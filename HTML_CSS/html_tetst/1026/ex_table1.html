@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table1</title>
+</head>
+<body>
+    <table border="100">
+        <!-- 표의 두께 -->
+        <caption>과일, 채소 테이블</caption>
+        <colgroup>
+            <col style="width: 100px;">
+            <col style="width: 100px;">
+            <col style="width: 100px;">
+        </colgroup>
+        <tr>
+            <th>과일</th>
+            <!-- 제목이 들어가는 열 -->
+            <td>사과</td>
+            <td>배</td>
+        </tr>
+        <tr>
+            <th>채소</th>
+            <td>양파</td>
+            <td>양배추</td>
+        </tr>
+    </table>
+<!-- <caption></caption> 표 제목
+<table>
+    밑에 표기 -->
+    <!-- <figure></figure>, <figcaption></figcaption> 표 제목 
+        
+        위에표기
+        <table>
+    -->
+    <figure>
+        <figcaption>
+            <p>표의 열 합치기</p>
+        </figcaption>
+    <table border="1">
+        <!-- <caption>
+            <strong>기본표만들기</strong>
+            <p>2행 3열 표 만들기</p>
+        </caption> -->
+        <colgroup>
+            <col span="4" style="width: 100px;">
+        </colgroup>
+        <tr>
+            <th>이름</th>
+            <td></td>
+            <th>연락처</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <th>자기소개</th>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+</figure>
+
+</body>
+</html>

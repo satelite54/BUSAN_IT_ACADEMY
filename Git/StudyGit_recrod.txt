@@ -33,6 +33,9 @@ git commit -m . 전체커밋
 
 10. 다른 사람이 변경한 내용 
 
+
+11. branch  합치기
+
 git 많이 쓰는 명령어 
 
 git init : git 생성하기

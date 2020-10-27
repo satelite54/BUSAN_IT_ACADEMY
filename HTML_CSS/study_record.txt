@@ -27,3 +27,6 @@ git status
 
 5. git add .
 .은 모두 추가
+
+6. git commit -m "파일이름"
+git commit -m . 전체커밋

@@ -26,6 +26,13 @@ git commit -m . 전체커밋
 7. git checkout -- .
 바로 전 단계 했던 내용으로 복귀
 
+8. git branch -M main
+메인 저장소 이름을 main으로 변경
+
+9. git push -u origin main
+
+10. 다른 사람이 변경한 내용 
+
 git 많이 쓰는 명령어 
 
 git init : git 생성하기
@@ -43,6 +50,7 @@ git commit -m “commit_description” : 선택한 코드 설명 적기 ( git co
 git push romote_name branch_name : add하고 commit한 코드 git server에 보내기 (git push origin master)
 git pull : git서버에서 최신 코드 받아와 merge 하기
 git fetch : git서버에서 최신 코드 받아오기
+
 git reset — hard HEAD^ : commit한 이전 코드 취소하기
 git reset — soft HEAD^ : 코드는 살리고 commit만 취소하기
 git reset — merge : merge 취소하기

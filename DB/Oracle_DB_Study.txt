@@ -1,0 +1,48 @@
+개발 환경 구축
+
+Oracle DB 서버, sql developer database 설치
+
+sql developer database 설치 후
+1. 접속 창에서 플러스 버튼 누른다.
+2. 접속 이름, 사용자 이름, 비밀 번호 설정 후 테스트
+3. 성공이라는 문구가 뜨면 저장 누르고 확인
+4. 확인 하게되면 워크시트가 뜬다. 
+	워크 시트 띄우는 단축키(Alt + F10)
+
+워크시트에서
+
+ㅇ 초록색버튼은 한줄 실행 (Ctrl + Enter)
+ㅇ 다른 실행 버튼은 스크립트 전체 실행 (F5)
+ㅇ 바꾸기 (Ctrl + R)
+
+DROP USER (유저이름) CASCADE; CASCADE는 관련된 모든 것 삭제
+
+GRANT CONNECT, RESOURCE, DBA TO madang; 마당에 접속 권한 인가하고 DBA(쓰지마)를 인가해 슈퍼계정을 만들겠다.
+GRANT
+
+ALTER USER madang ACCOUNT UNLOCK; 잠겨있는 마당 계정을 언락으로 수정한다.
+
+conn madang/madang; 오라클 명령어 madang 계정에서
+
+
+SELECT * FROM BOOK; 책 테이블에 있는 것을 전부 출력하라
+SELECT 속성 FROM 테이블
+
+SELECT * FROM BOOK WHERE bookid = 10;
+
+SELECT bookname, price FROM BOOK; BOOK이라는 테이블에서 bookname, price 속성을 출력해라
+
+SELECT * FROM book ORDER BY price DESC, publisher ASC; book의 price를 내림차순으로 조회해라 price의 가격이 같다면
+출판사를 오름차순으로 검색한다.
+ORDER BY는 기본 값이 오름차순이라서 안적어줘도 된다.
+
+
+SELECT
+    SUM(saleprice) 속성의 합
+FROM Orders;
+
+SELECT SUM(saleprice) AS 총매출; AS 키워드는 속성이름의 별칭을 만드는 것
+FROM Orders;
+
+SQL 개요
+

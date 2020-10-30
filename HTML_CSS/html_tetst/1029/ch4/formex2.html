@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 요소 그룹으로 묶기</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        li {
+            margin: 20px;
+        }
+        li label{
+            width: 80px;
+            float: left;
+        }
+        fieldset{
+            margin: 15px;
+        }
+        </style>
+</head>
+<body>
+    <form>
+        <fieldset>
+        <!-- <fieldset style="width: 300px; height: 300px;"> -->
+                <legend>개인 정보</legend>
+            <ul>
+                <li>
+                    <label for="name">이름</label>
+                    <input type="text" id = "name">
+                </li>
+                <li>
+                    <label for="phonenumber">전화번호</label>
+                    <input type="text" id = "phonenumber">
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>로그인 정보</legend>
+            <ul>
+                <li>
+                    <label for="">아이디</label>
+                    <input type="text">
+                </li>
+                <li>
+                    <label for = "pw">비밀번호</label>
+                    <input type="text" title="비밀번호" id = "pw">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+</body>
+</html>

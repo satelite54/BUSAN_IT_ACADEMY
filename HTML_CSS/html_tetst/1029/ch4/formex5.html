@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여틈방학 특강 신청</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>여름방학 특강 신청</h1>
+    <fieldset>
+        <legend>수강과목</legend>
+        <ul>
+            <li>
+                <label for="subj">영어회화(초급)</label>
+                <input type="text" id="subj" value="오전 9:00~11:00" readonly>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>신청자</legend>
+        <ul>
+            <li>
+                <label for="uname">이름</label>
+                <input type="text" id="uname" autofocus required>
+            </li>
+            <li>
+                <label for="uid">학번</label>
+                <input type="text" id="uid" placeholder="하이픈 없이 입력" maxlength="8">
+            </li>
+            <li>
+                <label for="department">학과</label>
+                <select id ="uclass">
+                    <option value="arche">건축공학과</option>
+                    <option value="mechani">기계공학과</option>
+                    <option value="indust">산업공학과</option>
+                    <option value="elec">전자공학과</option>
+                    <option value="computer">산업공학과</option>
+                    <option value="chemical">전자공학과</option>
+                </select>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>교재과목</legend>
+    </fieldset>
+    <fieldset></fieldset>
+</body>
+</html>

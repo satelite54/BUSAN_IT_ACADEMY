@@ -235,15 +235,32 @@ WHERE customer.custid = orders.custid AND orders.custid = book.bookid;
 
 -- 도서의 가격과 판매가격의 차이가 가장 많은 주문 -- max()사용 부속절의 S F W에서 W 뒤에 사용
 
-SELECT DISTINCT o1.orderid AS "주문번호", (b1.price - o1.saleprice) AS "도서가격 - 판매가격" 
-FROM book b1,orders o1
+SELECT DISTINCT o1.orderid AS "주문번호", (b1.price - o1.saleprice) AS "판매차익" 
+FROM book b1, orders o1
 WHERE (b1.price - o1.saleprice) = (SELECT MAX(b2.price - o2.saleprice)
                                     FROM book b2, orders o2
                                     WHERE b2.bookid = o2.bookid);
---
---(SELECT MAX()
---                  FROM orders
---                  WHERE b2.publisher= b1.publisher);
+                                    
+select t1.price, t2.saleprice, t1.price-t2.saleprice, t2.*
+
+from book t1, orders t2
+
+where t1.bookid = t2.bookid
+
+and t1.price - t2.saleprice = (select max(t3.price-t4.saleprice)
+
+                                from book t3, orders t4
+
+                                where t3.bookid = t4.bookid);
+
 -- 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름 -- S F W G H HAVING 절에서 S F W로 전체 평균
+
+select name, avg(saleprice)
+from customer t1, orders t2
+where t1.custid = t2.custid
+group by name
+having avg(saleprice) > (select avg(t3.saleprice) from orders t3);
+
+
 
 -- 상관커리란 고객별로 구하긴 구할껀데 부속절에서 처리

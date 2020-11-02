@@ -5,49 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여틈방학 특강 신청</title>
     <style>
-        ul {
-            list-style: none;
+        body {
+            background-color:white;
         }
+        form fieldset {
+            margin-bottom: 25px;
+            /* 마진을 아랫쪽에만 25px을 주겠다. */
+        }
+        /* 폼 태그 안에 있는 fieldset에는 */
+        form legend {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        form label.reg{
+            font-size: 14px;
+            width: 119px;
+            color: #390;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        form ul li{
+            list-style: none;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        /* 폼태그 lable태그에 reg 클래스에 적용하겠다 */
+        /* 여러태그에 똑같은 스타일을 주고 싶을 때 클래스 이용하면 된다. */
     </style>
 </head>
 <body>
     <h1>여름방학 특강 신청</h1>
-    <fieldset>
-        <legend>수강과목</legend>
-        <ul>
-            <li>
-                <label for="subj">영어회화(초급)</label>
-                <input type="text" id="subj" value="오전 9:00~11:00" readonly>
-            </li>
-        </ul>
-    </fieldset>
-    <fieldset>
-        <legend>신청자</legend>
-        <ul>
-            <li>
-                <label for="uname">이름</label>
-                <input type="text" id="uname" autofocus required>
-            </li>
-            <li>
-                <label for="uid">학번</label>
-                <input type="text" id="uid" placeholder="하이픈 없이 입력" maxlength="8">
-            </li>
-            <li>
-                <label for="department">학과</label>
-                <select id ="uclass">
-                    <option value="arche">건축공학과</option>
-                    <option value="mechani">기계공학과</option>
-                    <option value="indust">산업공학과</option>
-                    <option value="elec">전자공학과</option>
-                    <option value="computer">산업공학과</option>
-                    <option value="chemical">전자공학과</option>
-                </select>
-            </li>
-        </ul>
-    </fieldset>
-    <fieldset>
-        <legend>교재과목</legend>
-    </fieldset>
-    <fieldset></fieldset>
+    <form>
+        <fieldset>
+            <legend>수강과목</legend> 
+            <!-- 필드 제목설정 -->
+            <ul>
+                <li>
+                    <label class = "reg" for="subj">영어회화(초급)</label>
+                    <input type="text" id="subj" value="오전 9:00~11:00" readonly>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>신청자</legend>
+            <ul>
+                <li>
+                    <label  for="uname">이름</label>
+                    <input type="text" id="uname" autofocus required>
+                </li>
+                <li>
+                    <label for="uid">학번</label>
+                    <input type="text" id="uid" placeholder="하이픈 없이 입력" maxlength="8">
+                </li>
+                <li>
+                    <label for="department">학과</label>
+                    <select id ="uclass">
+                        <option value="arche">건축공학과</option>
+                        <option value="mechani">기계공학과</option>
+                        <option value="indust">산업공학과</option>
+                        <option value="elec">전자공학과</option>
+                        <option value="computer">산업공학과</option>
+                        <option value="chemical">전자공학과</option>
+                    </select>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>교재주문</legend>
+            <ul>
+                <li>
+                    <label class = "reg" for="book">교재</label>
+                    <input type="number" id="book" min="1" max="3" value="1">
+                </li>
+                <li>
+                    <label class = "reg" for="wsheet">워크시트</label>
+                    <input type="number" id="wsheet" value="2">
+                </li>
+                <li>
+                    <label class = "reg" for="group">학과</label>
+                    <input type="number" id="group" min="10" max = "100" step = "10" value="10">
+                    <!-- step 10개 씩 증가 -->
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <button class="subm" type="submit" value="submit">신청하기</button>
+            <button class="subm" type="reset" value="reset">다시쓰기</button>
+        </fieldset>
+    </form>
 </body>
 </html>

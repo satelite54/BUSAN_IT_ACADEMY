@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발자 지원서</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 외부 스타일 링크  -->
+</head>
+<body>
+    <div id="container">
+        <h1>프런트엔드 개발자 지원서</h1>
+        <p>HTML, CSS, Javascript에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</p>
+        <hr>
+    
+        <form>
+            <fieldset>
+                <legend>개인정보</legend>
+                <ul>
+                    <li>
+                        <label for="name">이름</label>
+                        <input type="text" placeholder="공백없이 입력하세요.">
+                    </li>
+                    <li>
+                        <label for = "pw">연락처</label>
+                        <input type="password" title="비밀번호" id = "pw">
+                    </li>
+                </ul>
+            </fieldset>
+    
+            <fieldset>
+                <legend>지원 분야</legend>
+                <ul>
+                    <li>
+                        <label>
+                            <input class="jione" type="radio" name ="subject" value="speaking">
+                            웹 퍼블리싱
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input class="jione" type="radio" name ="subject" value="speaking">
+                            웹 애플리케이션 개발
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input class="jione" type="radio" name ="subject" value="speaking">
+                            개발 환경 개선
+                        </label>
+                    </li>
+                </ul>
+            </fieldset>
+    
+            <fieldset>
+                <legend>지원 동기</legend>
+                <textarea cols= "60" rows="5" placeholder="본사 지원 동기를 간략히 써 주세요.">
+                </textarea>
+            </fieldset>
+    
+            <fieldset>
+                <div>
+                    <button class="subm" type="submit" value="submit">접수하기</button>
+                    <button class="subm" type="reset" value="reset">다시쓰기</button>
+                </div>
+                <!-- 영역 부분 태그 -->
+
+            </fieldset>
+        </form>
+    </div>
+ 
+</body>
+</html>

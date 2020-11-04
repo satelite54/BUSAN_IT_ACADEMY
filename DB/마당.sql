@@ -196,17 +196,34 @@ WHERE  orders.custid = customer.custid AND orders.custid = 1;
 -- 2. WHERE절에 박지성이 산 도서를 구해서 NOT IN 사용방법(부속절에다가)
 -- 3. WHERE 박지성이 산 도서 구해서 NOT EXISTS 사용(맞나????)
 -- 나는 차집합으로 풀었다.
-SELECT book.bookname FROM book
+SELECT book.bookname FROM book -- (1)
 MINUS SELECT name FROM customer, orders
 WHERE customer.custid = 1 AND orders.custid = 1;
 
+SELECT bookname FROM book-- (2)
+WHERE bookname NOT IN (SELECT bookname FROM customer, orders, book
+                        WHERE customer.custid = orders.custid
+                        AND orders.bookid = book.bookid
+                        AND NAME LIKE '박지성');
+
+SELECT bookname FROM book-- (3)
+WHERE NOT EXISTS (SELECT bookname FROM customer, orders-- book
+                        WHERE customer.custid = orders.custid
+                        AND orders.bookid = book.bookid
+                        AND NAME LIKE '박지성');
+
 -- 주문하지 않은 고객의 이름(조인 사용) -- 하... 못풀었다. 답아님
 -- (1)차집합 사용
+
+SELECT name FROM customer
+MINUS
+SELECT name FROM orders, customer
+WHERE orders.custid = customer.custid;
 -- (2) NOT IN (3) NOT EXISTS 사용
 SELECT DISTINCT customer.name FROM customer, orders
 WHERE customer.custid IN (orders.custid);
 -- 주문하지 않은 고객의 이름(차집합 사용) )
-SELECT name FROM customer
+SELECT name FROM customer --(1)
 MINUS
 SELECT name FROM customer
 WHERE custid IN(SELECT custid FROM orders);
@@ -242,15 +259,10 @@ WHERE (b1.price - o1.saleprice) = (SELECT MAX(b2.price - o2.saleprice)
                                     WHERE b2.bookid = o2.bookid);
                                     
 select t1.price, t2.saleprice, t1.price-t2.saleprice, t2.*
-
 from book t1, orders t2
-
 where t1.bookid = t2.bookid
-
 and t1.price - t2.saleprice = (select max(t3.price-t4.saleprice)
-
                                 from book t3, orders t4
-
                                 where t3.bookid = t4.bookid);
 
 -- 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름 -- S F W G H HAVING 절에서 S F W로 전체 평균
@@ -260,7 +272,146 @@ from customer t1, orders t2
 where t1.custid = t2.custid
 group by name
 having avg(saleprice) > (select avg(t3.saleprice) from orders t3);
-
-
-
 -- 상관커리란 고객별로 구하긴 구할껀데 부속절에서 처리
+
+SELECT * FROM customer, orders, book
+WHERE customer.custid = orders.custid AND orders.bookid = book.bookid;
+
+--------------------------------------------------------------------------------------------
+--Create 문
+
+CREATE TABLE NewBook(
+bookid      NUMBER,
+bookname       VARCHAR2(20),
+publisher      VARCHAR2(20),
+price          NUMBER,
+PRIMARY KEY (bookid));
+
+DROP TABLE newbook;
+
+CREATE TABLE NewBook( -- 테이블 생성
+bookid      NUMBER,
+bookname       VARCHAR2(20)     NOT NULL,
+publisher      VARCHAR2(20)     UNIQUE,
+price          NUMBER DEFAULT 10000 CHECK(price > 1000),
+PRIMARY KEY (bookid,price));
+
+CREATE TABLE newcustomer
+(custid NUMBER, PRIMARY KEY(custid),
+name    VARCHAR2(40),
+address VARCHAR2(40),
+phone   VARCHAR2(30)
+);
+
+CREATE TABLE neworders ( -- 테이블 생성
+orderid NUMBER,
+custid  NUMBER NOT NULL,
+bookid  NUMBER NOT NULL,
+saleprice  NUMBER,
+orderdate   DATE,
+PRIMARY KEY(orderid), -- 기본키 지정
+FOREIGN KEY(custid) REFERENCES newcustomer(custid) ON DELETE CASCADE);
+-- 외래키 지정 -- 제약조건 명시시 반드시 참조된 테이블이 존재해야함
+-- 참조되는 부모 테이블의 기본키여야한다.
+
+ALTER TABLE newbook ADD isbn VARCHAR2(13); -- newbook 테이블에 varchar2의 자료형을 가진 속성을 
+-- 추가해라
+
+ALTER TABLE newbook MODIFY isbn NUMBER; -- newbook 테이블에 isbn속성 데이터 타입을 NUMBER로 변경
+
+ALTER TABLE newbook DROP COLUMN isbn; -- newbook 테이블의 isbn속성을 삭제해라
+
+ALTER TABLE newbook MODIFY bookid NUMBER NOT NULL; -- bookid속성에 NOT NULL 제약조건을 적용
+
+ALTER TABLE newbook ADD PRIMARY KEY(bookid);
+
+DROP TABLE newbook;
+
+DROP TABLE newcustomer; -- newcustomer 테이블 삭제 데이터 테이블 구조까지 싹싹!
+                        -- DELETE는 데이터만 삭제
+DROP TABLE newcustomer CASCADE CONSTRAINTS; -- 다른 테이블이 해당 테이블을 참조할 경우 그냥 드롭
+-- 하면 안된다. CASCADE CONSTRINTS 옵션을 붙여 주면 해당 참조하는 테이블까지 다 삭제함
+
+INSERT INTO book(bookid, bookname, publisher, price) -- 튜플 삽입
+        VALUES(11, '스포츠 의학', '한솔의학서적', 90000);
+
+ALTER TABLE book MODIFY price NUMBER NULL;
+
+INSERT INTO book(bookid, bookname, publisher)
+VALUES(14, '스포츠 의학', '한솔의학서적'); -- 입력 데이터가 없으면 null 값으로 들어간다.
+                                        -- price = NULL
+                                        -- 테이블에 무결성 제약조건이 있으면 제약조건 에러 발생
+
+UPDATE customer SET address= '대한민국 부산' -- 특정 속성 값을 수정
+WHERE custid = 5;
+
+-- 박세리의 주소명을 김연아의 주소명으로 바꿔라
+UPDATE customer SET address = (SELECT address FROM customer
+                                WHERE name LIKE '김연아'
+                                )
+WHERE name LIKE '박세리';
+
+-- customer 테이블에서 고객번호가 5인 고객을 삭제해라.
+DELETE FROM customer
+WHERE custid = 5;
+
+-- 모든 고객을 삭제해라 -- 자식레코드 발견시 삭제 안함 무결성 제약조건 땜시
+DELETE FROM customer;
+-------예제
+
+--박지성이 구매한 도서의 출판사와 같은 출판사에서 도서를 구매한 고객의 이름 ????
+--SELECT DISTINCT name FROM customer, orders, book b1
+--WHERE customer.custid = orders.custid AND orders.bookid = b1.bookid
+--AND b1.publisher IN (SELECT b2.publisher FROM customer, orders, book b2
+--WHERE customer.custid = '1');
+
+SELECT name FROM (SELECT name FROM orders, customer, book
+                    WHERE orders.bookid = book.bookid AND customer.custid = orders.custid
+                            AND publisher IN (SELECT book.publisher FROM orders, customer, book
+                                                WHERE orders.bookid = book.bookid AND customer.custid = orders.custid
+      AND customer.name LIKE '박지성'))
+WHERE name NOT LIKE '박지성'; --- 답은 나오는것 같은데 너무 길다 ㅠㅠㅠㅠ 문제보고 어떻게 해결하면
+-- 효율적으로 할 수 있을까 고민해야할 듯하다....
+
+-- 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름 - 상관쿼리
+-- GROUP BY 를 사용한 쿼리는 상관쿼리로 바꿀 수 있다
+SELECT C1.NAME
+FROM customer C1 -- 하위쿼리에 C.NAME LIKE C1.NAME 이렇게 연결하면 GROUP BY를 안쓰고도 그룹함수를 쓸 수 있다.
+WHERE 2 <= (SELECT COUNT(DISTINCT B.PUBLISHER) 
+            FROM customer C, ORDERS O, BOOK B WHERE c.custid = o.custid AND o.bookid = b.bookid AND C.NAME = C1.NAME);
+
+-- 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
+SELECT C.NAME, COUNT(DISTINCT b.publisher) FROM customer C, ORDERS O, BOOK B 
+                                            WHERE c.custid = o.custid AND o.bookid = b.bookid
+                                            GROUP BY C.NAME
+                                            HAVING COUNT(DISTINCT b.publisher) >= 2;
+
+-- 전체 고객의 30% 이상이 구매한 도서
+SELECT B1.BOOKNAME FROM BOOK B1 
+WHERE (SELECT COUNT(b.bookname) FROM ORDERS O, BOOK B 
+              WHERE o.bookid = b.bookid AND B.BOOKID = B1.BOOKID) >= ( SELECT (COUNT(*) * 0.3) FROM customer);
+
+
+-- 새로운 도서('스포츠 세계', '대한미디어', 10000원)이 마당서점에 입고되었다.
+-- 삽입이 안될 경우 필요한 데이터가 더 있는지 찾아보자.
+INSERT INTO book(book.bookid, book.bookname, book.price, book.publisher)
+        VALUES(15,'스포츠 세계', 10000, '대한미디어');
+
+DELETE FROM book
+WHERE publisher LIKE '삼성당';
+
+DELETE FROM book -- orders의 bookid가 연관되어 있는것같다.. 그래서 삭제가 안되네.
+WHERE publisher LIKE '이상미디어';
+
+UPDATE book SET publisher = '대한출판사'
+WHERE publisher LIKE '대한미디어';
+
+select
+    constraint_name,
+    table_name,
+    r_constraint_name
+from
+    user_constraints
+where
+    constraint_name = 'SYS_C007021';
+

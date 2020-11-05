@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class code22 {
@@ -15,12 +16,17 @@ public class code22 {
 			if(commend.equals("read")) {
 				String fileName = kb.next();
 				makeIndex(fileName);
+				break;
 			}
 			else if (commend.equals("find")) {
-				
+				String str = kb.next();
+				int index = findWord(str);
+				if(index > -1) {
+					System.out.println("The word" + str + "doesn't appears");
+				}
 			}
 			else if (commend.equals("saveas")) {
-				System
+				
 			}
 			else if (commend.equals("exit")) {
 				break;
@@ -29,7 +35,43 @@ public class code22 {
 				System.out.println("Wrong commend");
 			}
 		}
+		kb.close();
+		
+		for(int i = 0; i < n; i++) {
+			System.out.println(wordStrings[i] + "" + count[i]);
+		}
 	}
 
-	static void makeIndex(String fileName)
+	static void makeIndex(String fileName) {
+		try {
+			Scanner inFileScanner = new Scanner(new File(fileName));
+			while(inFileScanner.hasNext()) {
+				String str = inFileScanner.next();
+				addword(str);
+			}
+			
+			inFileScanner.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	static void addword(String str) {
+		int index = findWord(str);
+		if(index != -1) { //found
+			
+		}
+		else { // not found
+			wordStrings[n] = str;
+			count[n] = 1;
+			n++;
+		}
+	}
+	static int findWord(String str) {
+		for(int i = 0; i < n; i++)
+			if(wordStrings[i].equals(str))
+				return 1;
+		return -1;
+	}
 }

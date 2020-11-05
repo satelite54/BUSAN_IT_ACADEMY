@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relative 속성</title>
+    <style>
+        .box1{
+            float:left;
+            width: 100px;
+            background-color: aqua;
+            margin-right: 10px;
+            padding: 20px;
+        }
+        .box2{
+            position: relative;
+            /* 자유롭게 문서 흐름에 따라 위치가 지정될꺼다 */
+            left: -50px;
+            /* 이렇게 하면 박스가 겹쳐진다. */
+            top: 30px;
+            background-color: yellow;
+            width: 300px;
+            float: left;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">박스1</div>
+    <div class="box2">박스2</div>
+    
+</body>
+</html>

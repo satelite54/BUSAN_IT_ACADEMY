@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>absolute 레이아웃</title>
+    <style>
+        #wrap {
+            position:relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        .box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: blue;
+        }
+        #lefttop {
+            top: 0;
+            left: 0;
+        }
+        #righttop {
+            top: 0;
+            right: 0;
+        }
+        #bottomleft {
+            bottom: 0;
+            left: 0;
+        }
+        #bottomright {
+            bottom: 0;
+            right: 0;
+        }
+        #center {
+            top: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "wrap">
+        <div class= "box" id = "lefttop"></div>
+        <div class= "box" id = "righttop"></div>
+        <div class= "box" id = "bottomleft"></div>
+        <div class= "box" id = "bottomright"></div>
+        <div class= "box" id = "center"></div>
+    </div>
+</body>
+</html>

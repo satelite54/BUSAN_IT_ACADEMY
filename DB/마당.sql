@@ -360,10 +360,11 @@ DELETE FROM customer;
 -------예제
 
 --박지성이 구매한 도서의 출판사와 같은 출판사에서 도서를 구매한 고객의 이름 ????
---SELECT DISTINCT name FROM customer, orders, book b1
---WHERE customer.custid = orders.custid AND orders.bookid = b1.bookid
---AND b1.publisher IN (SELECT b2.publisher FROM customer, orders, book b2
---WHERE customer.custid = '1');
+SELECT DISTINCT name FROM customer, orders, book b1
+WHERE customer.custid = orders.custid AND orders.bookid = b1.bookid
+AND b1.publisher IN (SELECT b2.publisher FROM customer, orders, book b2
+WHERE customer.custid = '1')
+AND name NOT LIKE '박지성';
 
 SELECT name FROM (SELECT name FROM orders, customer, book
                     WHERE orders.bookid = book.bookid AND customer.custid = orders.custid
@@ -390,6 +391,12 @@ SELECT C.NAME, COUNT(DISTINCT b.publisher) FROM customer C, ORDERS O, BOOK B
 SELECT B1.BOOKNAME FROM BOOK B1 
 WHERE (SELECT COUNT(b.bookname) FROM ORDERS O, BOOK B 
               WHERE o.bookid = b.bookid AND B.BOOKID = B1.BOOKID) >= ( SELECT (COUNT(*) * 0.3) FROM customer);
+-- 그룹 바이 사용 그룹바이 쓸 수 있는 문제는 대부분 상관커리로 해결이 가능하다.
+SELECT bookname FROM book, orders
+WHERE book.bookid = orders.bookid
+group by book.bookname
+HAVING COUNT(book.bookid) >= (SELECT COUNT(*) FROM customer) *0.3;
+-- 그룹 바이 썼지만 집계함수가 SELECT 리턴 속성에 없는 이유는 HAVING 에서 집계 함수를 사용했기 때문에 뭘로 집계할껀지 알고 있어서.
 
 
 -- 새로운 도서('스포츠 세계', '대한미디어', 10000원)이 마당서점에 입고되었다.
@@ -415,3 +422,16 @@ from
 where
     constraint_name = 'SYS_C007021';
 
+-- 4장 SQL 고급
+-- ABS 절대값
+
+CREATE TABLE dual(
+                value1 NUMBER,
+                value2 NUMBER
+                );
+INSERT INTO dual(value1, value2)
+VALUES(-78, 78);
+
+SELECT ABS(value1), ABS(value2) FROM dual;
+-- 절대값 
+SELECT ROUND(4.875, 1) FROM dual;

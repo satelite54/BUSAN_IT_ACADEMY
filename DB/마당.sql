@@ -435,3 +435,122 @@ VALUES(-78, 78);
 SELECT ABS(value1), ABS(value2) FROM dual;
 -- 절대값 
 SELECT ROUND(4.875, 1) FROM dual;
+
+-- 스칼라 부속질의 - SELECT 부속질의
+-- 마당서점의 고객별 판매액을 보이시오. -- (고객이름, 고객별 판매액)
+SELECT (SELECT name FROM Customer cs WHERE cs.custid = od.custid) "name", SUM(saleprice) "total"
+FROM orders od
+GROUP BY od.custid;
+
+-- 인라인 뷰 - FROM 부속질의
+-- 고객번호가 2이하인 고객의 판매액을 보이시오(고객이름, 고객별 판매액 출력)
+SELECT o1.saleprice FROM orders o1, (SELECT c1.custid FROM customer c1 WHERE c1.custid <= 2) cs
+WHERE cs.custid = o1.custid GROUP BY cs.name;
+
+-- 중첩질의 - WHERE 부속질의
+-- 평균 주문금액 이하의 주문에 대해서 주문번호와 금액을 보이시오.
+SELECT orderid,saleprice FROM orders
+WHERE saleprice <= (SELECT AVG(saleprice) FROM orders);
+
+-- 각 고객의 평균 주문금액보다 큰 금액의 주문 내역에 대해서 주문번호, 고객번호, 금액을 보이시오.
+SELECT od.orderid, od.custid, od.saleprice FROM orders od
+WHERE saleprice > (SELECT AVG(saleprice) FROM orders so
+                    WHERE od.custid = so.custid);
+-- 대한민국에 거주하는 고객에게 판매한 도서의 총판매액을 구하라.
+SELECT SUM(saleprice) FROM orders
+WHERE custid IN (SELECT custid FROM customer WHERE address LIKE '%대한민국%');
+
+-- 중첩질의 - WHERE 부속질의
+-- 3번 고객이 주문한 도서의 최고 금액보다 더 비싼 도서를 구힙안 주문의 주문번호와 금액을 보이시오.
+SELECT orderid, saleprice FROM orders
+WHERE saleprice > ALL(SELECT saleprice
+                        FROM  orders
+                        WHERE custid = '3');
+-- EXISTS, NOT EXISTS
+-- EXISTS 연산자로 대한민국에 거주하는 고객에게 판매한 도서의 총 판매액을 구하시오.
+SELECT SUM(saleprice) FROM orders od
+WHERE EXISTS (SELECT * FROM customer cs
+              WHERE address LIKE '%대한민국%' AND od.custid = cs.custid);
+-- 뷰 생성
+-- 주소에 '대한민국'을 포함하는 고객들로 구성된 뷰를 만들고 조회하시오. 뷰의 이름은 vw_Customer
+CREATE VIEW vw_Customer
+AS SELECT * FROM customer WHERE address LIKE '%대한민국%';
+-- orders 테이블에 고객이름과 도서이름을 바로 확인할 수 있는 뷰를 생성한 후, '김연아' 고객이
+-- 구입한 도서의 주문번호, 도서이름, 주문액을 보이시오.
+
+-- 뷰의 삭제
+-- 앞서 생성한 뷰 vw_customer
+DROP VIEW vw_customer;
+
+-- 판매가격이 20000원 이상인 도서의 도서번호, 도서이름, 고객이름, 출판사, 판매가격을 보여주는 
+-- highorders 뷰를 생성하시오.
+DROP VIEW highorders;
+CREATE VIEW highorders 
+AS (SELECT book.bookid, book.bookname, customer.name, book.publisher, orders.saleprice FROM book, customer, orders
+    WHERE saleprice >= 20000 AND book.bookid = orders.bookid AND customer.custid = orders.custid);
+    
+    SELECT book.bookid, book.bookname, customer.name, book.publisher FROM book, customer, orders
+    WHERE saleprice >= 20000 AND book.bookid = orders.bookid AND customer.custid = orders.custid;
+-- 생성한 뷰를 이용하여 판매된 도서의 이름과 고객의 이름을 출력하는 SQL문을 작성하시오.
+SELECT bookname, name FROM highorders;
+-- highorders 뷰를 변경하고자 한다. 판매가격 속성을 삭제하는 명령을 수행하시오.
+-- 삭제 후 2번 SQL 문을 다시 수행하시오.
+--DROP VIEW highorders(saleprice);
+CREATE OR REPLACE VIEW highorders(bookid, bookname, name, publisher)
+AS (SELECT book.bookid, book.bookname, customer.name, book.publisher FROM book, customer, orders
+    WHERE book.bookid = orders.bookid AND customer.custid = orders.custid);
+SELECT bookname, name FROM highorders;
+
+-- 인덱스
+-- 인덱스 사용할 때 유의사항
+-- INSERT가 많이 일어나는 곳에는 인덱스 사용하면 안된다.
+-- UPDATE도 마찬가지
+-- DELETE는 영향을 안미친다.
+-- 인덱스 구멍이 나면 리빌드 해야한다.
+-- 복합 인덱스는 속성 값 2개을 같이 검색해야할 때
+
+-- book 테이블의 bookname 열을 대상으로 비 클러스터 인덱스 ix_Book을 생성해.
+CREATE INDEX ix_Book ON book (bookname);
+
+-- 인덱스 ix_Book을 재생성하시오.
+ALTER INDEX ix_Book REBUILD;
+
+-- 인덱스
+DROP INDEX ix_book;
+
+-- [마당서점 데이터베이스 인덱스] 마당서점 데이터 베이스에서 다음 SQL 문을 수행하고 
+-- 데이터베이스가 인덱스를 사용하는 과정을 확인하세요.
+
+-- 다음 SQL문 수행 후 실행 계획을 살펴봐라. 실행 계획은 F10키를 누른후 계획 설명탭을 선택하면 표시
+SELECT name FROM customer
+WHERE name LIKE '박세리';
+-- 인덱스 생성 후 위 SQL 문을 실행해서 실행계획을 봐라
+CREATE INDEX name ON customer(name);
+-- 생성한 INDEX를 삭제해라
+DROP INDEX name;
+DROP INDEX ix_book;
+
+-- 2장 
+-- 3.1 개체 무결성 제약조건
+-- 기본키 제약
+-- 기본키는 유니크한 값을 가져야 한다.
+
+--3.2 참조 무결성 제약조건
+-- 다른 테이블의 속성이 참조하고 있고 외래키가 있는 테이블을 삭제 할경우
+-- ON DELETE 옵션
+-- 1. 거부 (default)
+-- 2. 추적, 동시삭제 (casecade)
+-- 3. 9999 기본 값 줌
+-- 4. NULL
+
+-- 2.2 릴레이션 인스턴스
+-- 튜플 = 행의 개수 카디널리티 = 튜플의 수
+
+-- 2.1 릴레이션 스키마
+-- 속성 : 릴레이션 스키마의 열
+-- 도메인 : 속성이 가질 수 있는 값의 집합
+-- 차수 : 속성의 개수
+
+--도메인(domain) : 속성이 가질 수 있는 값의 집합
+-- 2. 릴레이션 스키마와 인스턴스
+-- 스키마란 스키마 주세요 하면 테이블이랑 자료형 주면 됨 (CREATE문)

@@ -148,4 +148,12 @@ GROUP BY deptno;
 
 --40.  부서번호(deptno)가 10은 '총무부', 20은 '개발부', 30은 영업부'라고 하여 
 --이름, 부서번호, 부서명 순으로 출력하여 보시오. (decode 나 case 함수 사용)
-SELECT  dname, deptno, DECODE(deptno, 10, '총무부', 20, '개발부', 30, '영업부', 40, '생산관리', 'EMPTY') FROM dept
+SELECT  dname, deptno, DECODE(deptno, 10, '총무부', 20, '개발부', 30, '영업부', 40, '생산관리', 'EMPTY') FROM dept;
+
+INSERT INTO emp 
+VALUES (7788, 'SCOTT', 'ANALYST', 7566, TO_DATE('09-10-1982', 'DD-MM-YYYY'), 3000, NULL, 20);
+
+INSERT INTO emp 
+VALUES (7876, 'ADAMS', 'CLERK', 7788, TO_DATE('12-01-1983', 'DD-MM-YYYY'), 1100, NULL, 20);
+
+SELECT * FROM EMP ORDER BY sal;

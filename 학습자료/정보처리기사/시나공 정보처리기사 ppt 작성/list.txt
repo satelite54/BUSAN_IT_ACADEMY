@@ -1,0 +1,87 @@
+Section 25 유스케이스.pptx
+Section 26 활동 다이어그램.pptx
+Section 27 클래스 다이어그램.pptx
+Section 28 시퀀스 다이어그램.pptx
+Section 29 커뮤니케이션 다이어그램.pptx
+Section 30 상태 다이어그램.pptx
+Section 31 데이터 모델의 개념.pptx
+Section 32 이상 함수적종속 정규화.pptx
+Section 33 논리데이터모델의 물리데이터 모델로 변환.pptx
+Section 34 반정규화.pptx
+Section 35 인덱스 설계.pptx
+Section 36 뷰 설계.pptx
+Section 37 클러스터 설계.pptx
+Section 38 파티션 설계.pptx
+Section 39 데이터베이스 용량 설게.pptx
+Section 40 연계 요구사항 분석.pptx
+Section 41 연계 데이터 식별 및 표준화.pptx
+Section 42 연계 메커니즘 정의.pptx
+Section 43 연계 장애 및 오류처리 구현.pptx
+Section 44 연계 데이터 보안 적용.pptx
+Section 45 연계 모듈의 구현 환경.pptx
+Section 46 XML.pptx
+Section 47 연계 테스트.pptx
+Section 48 개발 환경 구축.pptx
+Section 49 모듈.pptx
+Section 50 공통모듈.pptx
+Section 51 DBMS 접속.pptx
+Section 52 서버 개발.pptx
+Section 53 서버 개발 과정.pptx
+Section 54 배치 프로그램.pptx
+Section 55 사용자 인터페이스.pptx
+Section 56 UI 표준 및 지침.pptx
+Section 57 UI 요구사항 확인.pptx
+Section 58 UI 프로토타입 제작 및 검토.pptx
+Section 59 UI 흐름 설계.pptx
+Section 60 UI 상세 설계.pptx
+Section 61 애플리케이션 테스트.pptx
+Section 62 애플리케이션 테스트의 분류.pptx
+Section 63 테스트 기법에 따른 애플리케이션 테스트.pptx
+Section 64 65 개발 단계에 따른 애플리케이션 테스트 통합테스트.pptx
+Section 66 애플리케이션 테스트 프로세스.pptx
+Section 67 테스트케이스테스트시나리오테스트오라클.pptx
+Section 68 테스트 자동화 도구.pptx
+Section 69 결함관리.pptx
+Section 70 애플리케이션 성능 분석.pptx
+Section 71 애플리케이션 성능 개선.pptx
+Section 72 SQL - DDL.pptx
+Section 73 SQL - DCL.pptx
+Section 74 SQL - DML.pptx
+Section 75 DML-SELECT-1.pptx
+Section 77 프로시저.pptx
+Section 78 사용자 점의 함수.pptx
+Section 79 트리거.pptx
+Section 80 제어문.pptx
+Section 81 커서.pptx
+Section 82 소프트웨어 개발 보안.pptx
+Section 83 Secure SDLC.pptx
+Section 85 세션 통제.pptx
+Section 86 입력 데이터 검증 및 보안.pptx
+Section 87 보안 기능.pptx
+Section 88 에러처리.pptx
+Section 89 코드 오류.pptx
+Section 90 캡슐화.pptx
+Section 91 API 오용.pptx
+Section 92 암호 알고리즘.pptx
+Section 93 운영체제의 개념.pptx
+Section 94 운영체제의 종류.pptx
+Section 95 운영체제의 기본 명령어.pptx
+Section 96 기억장치 관리.pptx
+Section 97 프로세스 관리.pptx
+Section 98 데이터베이스 개념.pptx
+Section 99 ER 모델.pptx
+Section 100 관계형 데이터 모델.pptx
+Section 101 키의 개념 및 종류.pptx
+Section 102 무결성.pptx
+Section 103 네트워크.인터넷.pptx
+Section 104 OSI 참조 모델.pptx
+Section 105 네트워크 관련 장비.pptx
+Section 106 107 TCPip, 데이터 교환 방식 라우팅.pptx
+Section 108 소프트웨어 패키징.pptx
+Section 109 릴리즈 노트 작성.pptx
+Section 110 디지털 저작권 관리(DRM).pptx
+Section 111 소프트웨어 설치 메뉴얼 작성.pptx
+Section 112 소프트웨어 사용자 메뉴얼.pptx
+Section 113 114 소프트웨어 버전 등록.pptx
+Section 115 빌드 자동화 도구.pptx
+

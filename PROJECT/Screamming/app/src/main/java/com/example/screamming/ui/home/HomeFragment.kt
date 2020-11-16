@@ -49,8 +49,6 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-
         var LoadMaxAmplitude = loadData()
         Data.UserName = ""
         Data.MaxAmplitude = LoadMaxAmplitude

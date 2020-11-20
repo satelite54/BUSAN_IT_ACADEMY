@@ -2,6 +2,7 @@ package lifeCoding;
 
 public class ClassBaseMain {
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		CCalculator c1 = new CCalculator(10, 20); // 생성자에 값을 넣어준다. // 인스턴스를 생성하는자.
@@ -57,5 +58,6 @@ public class ClassBaseMain {
 		// 만약에 부모 클래스가 생성자 매개변수를 가지고 있는 경우는 오류를 뿜는다.
 		// 하위클래스에서 부모 클래스의 생성자를 만들어주고 싶으면 자식클래스 생성자 쪽에서
 		// super(매개변수1, 매개변수2.. 이런식으로 가면된다.)
+		
 	}
 }

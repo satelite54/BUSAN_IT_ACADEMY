@@ -42,8 +42,7 @@ class FirstFragment : Fragment() {
         if(VibrationFlag)
             vib.cancel()
     }
-
-    @RequiresApi(Build.VERSION_CODES.O)
+    
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -67,24 +66,54 @@ class FirstFragment : Fragment() {
 
             when (radioGroup1.checkedRadioButtonId) {
                 radioButton1.id -> {
-                    vib.vibrate(VibrationEffect.createWaveform(timings1, amplitudes1, 1))
-                    VibrationFlag = true
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(VibrationEffect.createWaveform(timings1, amplitudes1, 1))
+                        VibrationFlag = true
+                    }
+                    else {
+                        vib.vibrate(timings1, 0);
+                        VibrationFlag = true
+                    }
                 }
                 radioButton2.id -> {
-                    vib.vibrate(VibrationEffect.createWaveform(timings2, amplitudes2, 1))
-                    VibrationFlag = true
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(VibrationEffect.createWaveform(timings2, amplitudes2, 1))
+                        VibrationFlag = true
+                    }
+                    else {
+                        vib.vibrate(timings2, 0);
+                        VibrationFlag = true
+                    }
                 }
                 radioButton3.id -> {
-                    vib.vibrate(VibrationEffect.createWaveform(timings3, amplitudes3, 1))
-                    VibrationFlag = true
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(VibrationEffect.createWaveform(timings3, amplitudes3, 1))
+                        VibrationFlag = true
+                    }
+                    else {
+                        vib.vibrate(timings3, 0);
+                        VibrationFlag = true
+                    }
                 }
                 radioButton4.id -> {
-                    vib.vibrate(VibrationEffect.createWaveform(timings4, amplitudes4, 1))
-                    VibrationFlag = true
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(VibrationEffect.createWaveform(timings4, amplitudes4, 1))
+                        VibrationFlag = true
+                    }
+                    else {
+                        vib.vibrate(timings4, 0);
+                        VibrationFlag = true
+                    }
                 }
                 radioButton5.id -> {
-                    vib.vibrate(VibrationEffect.createWaveform(timings5, amplitudes5, 1))
-                    VibrationFlag = true
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(VibrationEffect.createWaveform(timings5, amplitudes5, 1))
+                        VibrationFlag = true
+                    }
+                    else {
+                        vib.vibrate(timings5, 0);
+                        VibrationFlag = true
+                    }
                 }
             }
         }

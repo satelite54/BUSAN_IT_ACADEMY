@@ -39,7 +39,6 @@ class SecondFragment : Fragment() {
             vib.cancel()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         editTextNumber.setText("255")
@@ -115,9 +114,14 @@ class SecondFragment : Fragment() {
             else {
                 val timings = longArrayOf(100, Lfrequency, 0, Lfrequency) // 1초 진동 후 0.25초 대기
                 val amplitudes = intArrayOf(0, nIntensity, 0, 0)
-
-                vib.vibrate(VibrationEffect.createWaveform(timings, amplitudes, 1))
-                VibrationFlag = true
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vib.vibrate(VibrationEffect.createWaveform(timings, amplitudes, 1))
+                    VibrationFlag = true
+                }
+                else {
+                    vib.vibrate(timings, 0);
+                    VibrationFlag = true
+                }
             }
         }
 

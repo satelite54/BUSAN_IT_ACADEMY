@@ -1,7 +1,7 @@
 package list.Arraylist.implement;
 import java.util.Scanner;
 
-public class Main {
+public class CodeUpMain {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int[][] box = new int[10][10];

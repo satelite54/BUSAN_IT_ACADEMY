@@ -22,8 +22,10 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	// https://m.blog.naver.com/pmw9440/221981411851 라이브러리 임포트 오류 났을 때..
+	// https://we-always-fight-with-code.tistory.com/36 실행 안될 때..
+	// 자리옮겼는데 새로 세팅하는데 너무 시간 많이 걸린다 ㅠㅠ
 	public static void main(String[] args) {
-		launch(args);
+		launch(args);  
 	}
 }

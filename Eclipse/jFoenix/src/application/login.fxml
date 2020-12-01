@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application/xx">
+   <children>
+      <JFXTextField fx:id="txid" layoutX="138.0" layoutY="114.0" text="아이디" />
+      <JFXPasswordField fx:id="txps" layoutX="138.0" layoutY="233.0" />
+      <JFXButton id="login" fx:id="login" layoutX="100.0" layoutY="344.0" prefWidth="200.0" text="LOG IN" />
+   </children>
+</AnchorPane>

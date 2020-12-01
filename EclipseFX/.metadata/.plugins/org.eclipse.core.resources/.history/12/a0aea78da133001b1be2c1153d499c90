@@ -1,0 +1,34 @@
+package application;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+public class xx extends Main {
+
+    @FXML
+    private JFXTextField txid;
+
+    @FXML
+    private JFXPasswordField txps;
+
+    @FXML
+    private JFXButton login;
+
+    @FXML
+    private Label labelbtn;
+
+    @FXML
+    void loginClick(ActionEvent event) {
+    	if(txid.getText().equals("myid") && (txps.getText().equals("mypass"))) {
+    		labelbtn.setText("로그인 완료!");
+    		newPage();
+    	} else {
+    		labelbtn.setText("로그인 살패!");
+    	}
+    }
+}

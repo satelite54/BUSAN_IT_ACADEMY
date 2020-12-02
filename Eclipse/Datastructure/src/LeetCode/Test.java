@@ -321,4 +321,40 @@ public class Test {
             res[indices[x]] = arr[x];
         return new String(res); //오 스트링 생성자 호출할 때 charArray 넣어주면 String으로 합쳐주네.
     }
+    
+    public int subtractProductAndSumMy(int n) {
+        String str = Integer.toString(n);
+        String[] strAry = new String[str.length()];
+    	strAry = str.split("");
+    	int tempProduct = 1;
+    	int tempSum = 0;
+    	for(int i = 0; i < strAry.length; i++) {
+    		tempProduct *= Integer.parseInt(strAry[i]);
+    		tempSum += Integer.parseInt(strAry[i]);
+    	}
+    	return tempProduct - tempSum;
+    } // 진짜 느리네.. 6%다.
+    
+    public int subtractProductAndSum(int num) {
+        int product = 1, sum = 0;
+        while(num != 0){
+            int digit = num%10;
+            num /= 10;
+            product *= digit; 
+            sum += digit;
+        }
+        return product- sum;
+    } // 숫자로 생각해서 풀 때
+    public int subtractProductAndSum2(int n) {
+        String N = Integer.toString(n);
+        int product = 1;
+        int sum = 0;
+        for (char c : N.toCharArray()) {
+            
+            product *= Character.getNumericValue((int)c);
+            sum += Character.getNumericValue((int)c);
+        }
+        return product - sum;
+    } // String 으로 풀 때 오~~~
+}
 }

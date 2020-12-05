@@ -10,13 +10,45 @@ import java.util.stream.Stream;
 
 import com.sun.jdi.CharType;
 
+class Person{
+	String name;
+	int age;
+	public Person(String name, int age) {
+		this.name= name;
+		this.age = age;
+	}
+	public void show() {
+		System.out.println(name + " " + age+ " ");
+	}
+}
+
+class Student extends Person {
+	String major;
+	public Student(String name, int age, String major) {
+		super(name, age);
+		this.major = major;
+	}
+	@Override
+	public void show() {
+		System.out.println(name + " " + age + " " + major);
+	}
+}
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String str = "codeleet";
-		int[] nAry = {4, 5, 6, 7, 0, 2, 1, 3};
-		System.out.println(restoreString(str, nAry));
+		String city = "서울";
+		String country = "";
+		
+		switch(city) {
+		case "서울" :
+		case "부산" : country = "한국";
+		case "북경" : country = "중국";
+		case "동경" : country = "일본";
+					break;
+		default : country = "대상없음";
+		}
+		System.out.println(country);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -357,4 +389,4 @@ public class Test {
         return product - sum;
     } // String 으로 풀 때 오~~~
 }
-}
+

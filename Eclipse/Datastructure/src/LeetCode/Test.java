@@ -10,45 +10,17 @@ import java.util.stream.Stream;
 
 import com.sun.jdi.CharType;
 
-class Person{
-	String name;
-	int age;
-	public Person(String name, int age) {
-		this.name= name;
-		this.age = age;
-	}
-	public void show() {
-		System.out.println(name + " " + age+ " ");
-	}
-}
+import Util.CPrint;
 
-class Student extends Person {
-	String major;
-	public Student(String name, int age, String major) {
-		super(name, age);
-		this.major = major;
-	}
-	@Override
-	public void show() {
-		System.out.println(name + " " + age + " " + major);
-	}
-}
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String city = "서울";
-		String country = "";
+		int[] nAry= {0,1,2,3,4};
+		int[] index= {0,1,2,2,1};
 		
-		switch(city) {
-		case "서울" :
-		case "부산" : country = "한국";
-		case "북경" : country = "중국";
-		case "동경" : country = "일본";
-					break;
-		default : country = "대상없음";
-		}
-		System.out.println(country);
+		CPrint print = new CPrint();
+		print.printArray(createTargetArray(nAry, index));
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -388,5 +360,50 @@ public class Test {
         }
         return product - sum;
     } // String 으로 풀 때 오~~~
+    
+    public int[] decompressRLElistMy(int[] nums) {
+    	ArrayList<Integer> nArayList = new ArrayList<>();
+        for(int i = 0; i < nums.length; i++) {
+        	int getCnt = nums[i];
+        	if(i % 2 == 0) {
+        		for(int j = 0; j < getCnt; j++) {
+        			nArayList.add(nums[i + 1]);        			
+        		}
+        	}
+        }
+        return nArayList.stream().mapToInt(i -> i).toArray(); // 스트림을 이용해서 int[]로 변환
+    }// 6ms
+    
+    public int[] decompressRLElist(int[] nums) {
+        int size = 0;
+        for(int i=0; i<nums.length; i+=2)
+        {
+            size += nums[i];
+        }
+        
+        int[] res = new int[size];
+        int index = 0;
+        
+        for(int i=1; i<nums.length; i+=2)
+        {
+            int occurrences = nums[i-1];
+            int value = nums[i];
+            
+            while(occurrences-- != 0)
+            {
+                res[index++] = value;
+            }
+        }
+        
+        return res;
+    } // 1ms
+    
+    public static int[] createTargetArray(int[] nums, int[] index) {
+    	ArrayList<Integer> nAryList = new ArrayList<>();
+    	for(int i = 0; i < nums.length; i++) {
+    		nAryList.add(index[i], nums[i]);
+    	}
+    	return nAryList.stream().mapToInt(i -> i).toArray();
+    }
 }
 

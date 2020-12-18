@@ -1,3 +1,4 @@
+package java_temp;
 import java.util.Scanner;
 
 public class Box_exam {

@@ -1,3 +1,4 @@
+package java_temp;
 
 public class WrapperExam {
 

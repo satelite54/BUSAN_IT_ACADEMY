@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Calculate/src"/>
+	<classpathentry kind="src" path="Datastructure/src"/>
+	<classpathentry kind="src" path="dsadsa/src"/>
+	<classpathentry kind="src" path="Example/src"/>
+	<classpathentry kind="src" path="First/src"/>
+	<classpathentry kind="src" path="FxDemo/src"/>
+	<classpathentry kind="src" path="fxtest/src"/>
+	<classpathentry kind="src" path="Java_Middel_class/src"/>
+	<classpathentry kind="src" path="Javaw/src"/>
+	<classpathentry kind="src" path="jFoenix/src"/>
+	<classpathentry kind="src" path="Lesson01/src"/>
+	<classpathentry kind="src" path="Lesson02/src"/>
+	<classpathentry kind="src" path="Lesson3/src"/>
+	<classpathentry kind="src" path="Lesson4/src"/>
+	<classpathentry excluding="lifeCoding/" kind="src" path="lifeCoding/src"/>
+	<classpathentry kind="src" path="lifeCoding/src/lifeCoding"/>
+	<classpathentry kind="src" path="Rest_API_Base_Server-1/src/main/java"/>
+	<classpathentry kind="src" path="Rest_API_Base_Server-1/src/test/java"/>
+	<classpathentry kind="lib" path="Rest_API_Base_Server-1/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="Datastructure/bin"/>
+</classpath>

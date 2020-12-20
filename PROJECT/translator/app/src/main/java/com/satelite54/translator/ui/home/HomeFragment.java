@@ -1,5 +1,6 @@
 package com.satelite54.translator.ui.home;
 
+import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,8 +8,11 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +32,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +73,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final EditText Korean = getView().findViewById(R.id.editTextTextMultiLine);
+        Spinner spinner = getView().findViewById(R.id.spinner2);
+        EditText Korean = getView().findViewById(R.id.editTextTextMultiLine);
+        String[] ArySpinner = new String[] {
+                "한국어 -> 영어",
+                "한국어 -> 중국어 간체",
+                "한국어 -> 중국어 번체",
+                "한국어 -> 스페인어",
+                "한국어 -> 프랑스어",
+                "한국어 -> 베트남어",
+                "한국어 -> 태국어",
+                "한국어 -> 인도네시아어",
+                "영어 -> 일본어",
+                "영어 -> 프랑스어"
+        };
+
         // fragment에서 뷰의 아이디를 얻는 방법
         Button translator = getView().findViewById(R.id.button);
         translator.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +132,7 @@ public class HomeFragment extends Fragment {
         backgroundtask = Observable.fromCallable(() -> {
 //doInBackground
             Ctranslator trslt = new Ctranslator();
+            Spinner spinner = getView().findViewById(R.id.spinner2);
             tempstr[0] = trslt.post(apiURL, requestHeaders, text);
 
             String str = tempstr[0];//여기까지 변역 내용이 들어 온것 까지 확인했다!!!!

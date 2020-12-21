@@ -39,6 +39,10 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private Disposable backgroundtask;
+    private static String clientId = "oZqswaDIvHfIzdNNpKIY"; // 애플리케이션 클라이언트 id 값
+    private static String clientSecret = "5mHRY_NuV4"; // 애플리케이션 클라이언트 secret 넘버
+    private static String apiURL = "https://openapi.naver.com/v1/papago/n2mt"; // 파파고 API 호출 주소
+
     // RxJava를 사용하기 위해 추가
     //https://dev-daddy.tistory.com/26 참고자료    //https://blog.yena.io/studynote/2020/10/11/Android-RxJava(1).html
 //    RxAndroid의 스케줄러
@@ -89,10 +93,6 @@ public class HomeFragment extends Fragment {
         Button translator = getView().findViewById(R.id.button);
 
         translator.setOnClickListener(ViewOnClickListener -> {
-               String clientId = "oZqswaDIvHfIzdNNpKIY";//애플리케이션 클라이언트 아이디값";
-               String clientSecret = "5mHRY_NuV4";//애플리케이션 클라이언트 시크릿값";
-
-               String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
                String text;
                try {
                    if(Korean.getText().toString().equals("")) {

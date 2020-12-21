@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import com.sun.jdi.CharType;
 
 import Util.CPrint;
 
@@ -16,11 +17,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nAry= {0,1,2,3,4};
-		int[] index= {0,1,2,2,1};
-		
-		CPrint print = new CPrint();
-		print.printArray(createTargetArray(nAry, index));
+		String a = "(1+(2*3)+((8)/4))+1";
+		maxDepth(a);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -404,6 +402,37 @@ public class Test {
     		nAryList.add(index[i], nums[i]);
     	}
     	return nAryList.stream().mapToInt(i -> i).toArray();
+    }
+    // 속도 100% ...
+    public static int numberOfMatchesMy(int n) {
+    	int result = 0;
+    	while(n != 1) {
+    		result += n / 2;
+    		n = n - (n / 2);
+    	}
+    	return result;
+    }
+    public static int maxDepth(String s) {
+
+//    	Stream<Character> charcterstream = s.chars().mapToObj(c -> (char) c);
+//    	Character charobj = charcterstream.max(Character::compare).get();
+//    	System.out.println(charobj);
+        // 오 수식이 주어졌을 때 스트링에서 가장 높은 정수 값을 찾는 방법이다.
+        // 아스키 코드표를 잘 알아야 활용할 수 있을 듯.
+    	int Cnt = 0;
+        int max = 0;
+        for(int i = 0; i < s.length(); i++) {
+        	int CharInt = s.charAt(i);
+        	if(CharInt == 40) {
+        		++Cnt;
+        		if(max < Cnt)
+        			max = Cnt;
+        	} else if(CharInt == 41){
+				--Cnt;
+			}
+        }
+        System.out.println(max);
+    	return max; 
     }
 }
 

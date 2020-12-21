@@ -2,6 +2,7 @@ package com.satelite54.translator.ui.home;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.satelite54.translator.CSingleton;
 import com.satelite54.translator.R;
+import com.satelite54.translator.RegisterActivity;
 import com.satelite54.translator.ui.Ctranslator;
 
 import java.io.UnsupportedEncodingException;
@@ -42,6 +44,7 @@ public class HomeFragment extends Fragment {
     private static String clientId = "oZqswaDIvHfIzdNNpKIY"; // 애플리케이션 클라이언트 id 값
     private static String clientSecret = "5mHRY_NuV4"; // 애플리케이션 클라이언트 secret 넘버
     private static String apiURL = "https://openapi.naver.com/v1/papago/n2mt"; // 파파고 API 호출 주소
+    public  static String DBsqlRerult = "";
 
     // RxJava를 사용하기 위해 추가
     //https://dev-daddy.tistory.com/26 참고자료    //https://blog.yena.io/studynote/2020/10/11/Android-RxJava(1).html
@@ -73,7 +76,7 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Spinner spinner = getView().findViewById(R.id.spinner2);
         EditText Korean = getView().findViewById(R.id.editTextTextMultiLine);
-
+        EditText result = getView().findViewById(R.id.editTextTextMultiLine2);
         ArrayList<String> AryList = new ArrayList<>();
         AryList.add("한국어 -> 영어");
         AryList.add("한국어 -> 중국어 간체");
@@ -119,6 +122,22 @@ public class HomeFragment extends Fragment {
 //                result.setText(responseBody);
 
            });
+
+        Button DBSave = getView().findViewById(R.id.button2);
+
+        DBSave.setOnClickListener(ViewOnClickListener -> {
+            try {
+
+                String target = result.getText().toString();
+                String Korea = Korean.getText().toString();
+
+
+                RegisterActivity task = new RegisterActivity();
+                DBsqlRerult = task.execute(Korea, target).get();
+            } catch (Exception e) {
+                Log.i("DBtest", ".....ERROR.....!");
+            }
+        });
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void BackgroundTask(String apiURL, Map<String, String> requestHeaders, String text, String responseBody, int translatoritem) {

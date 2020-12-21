@@ -21,10 +21,54 @@ import java.util.Map;
 
 public class Ctranslator{
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static String post(String apiUrl, Map<String, String> requestHeaders, String text){
+    public static String post(String apiUrl, Map<String, String> requestHeaders, String text, int translatoritems){
 
         HttpURLConnection con = connect(apiUrl);
-        String postParams = "source=ko&target=en&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
+        String source = "";
+        String target = "";
+        switch (translatoritems) {
+            case 0 :
+                source = "ko";
+                target = "en";
+                break;
+            case 1 :
+                source = "ko";
+                target = "zh-CN";
+                break;
+            case 2 :
+                source = "ko";
+                target = "zh-TW";
+                break;
+            case 3 :
+                source = "ko";
+                target = "es";
+                break;
+            case 4 :
+                source = "ko";
+                target = "fr";
+                break;
+            case 5 :
+                source = "ko";
+                target = "vi";
+                break;
+            case 6 :
+                source = "ko";
+                target = "th";
+                break;
+            case 7 :
+                source = "ko";
+                target = "id";
+                break;
+            case 8 :
+                source = "en";
+                target = "ja";
+                break;
+            case 9 :
+                source = "en";
+                target = "fr";
+                break;
+        }
+        String postParams = "source=" + source + "&target=" + target + "&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
         try {
             con.setRequestMethod("POST");
             for(Map.Entry<String, String> header :requestHeaders.entrySet()) {

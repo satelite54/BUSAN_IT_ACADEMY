@@ -75,18 +75,21 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Spinner spinner = getView().findViewById(R.id.spinner2);
         EditText Korean = getView().findViewById(R.id.editTextTextMultiLine);
-        String[] ArySpinner = new String[] {
-                "한국어 -> 영어",
-                "한국어 -> 중국어 간체",
-                "한국어 -> 중국어 번체",
-                "한국어 -> 스페인어",
-                "한국어 -> 프랑스어",
-                "한국어 -> 베트남어",
-                "한국어 -> 태국어",
-                "한국어 -> 인도네시아어",
-                "영어 -> 일본어",
-                "영어 -> 프랑스어"
-        };
+
+        ArrayList<String> AryList = new ArrayList<>();
+        AryList.add("한국어 -> 영어");
+        AryList.add("한국어 -> 중국어 간체");
+        AryList.add("한국어 -> 중국어 번체");
+        AryList.add("한국어 -> 스페인어");
+        AryList.add("한국어 -> 프랑스어");
+        AryList.add("한국어 -> 베트남어");
+        AryList.add("한국어 -> 태국어");
+        AryList.add("한국어 -> 인도네시아어");
+        AryList.add("영어 -> 일본어");
+        AryList.add("영어 -> 프랑스어");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,AryList);
+        spinner.setAdapter(arrayAdapter);
 
         // fragment에서 뷰의 아이디를 얻는 방법
         Button translator = getView().findViewById(R.id.button);
@@ -115,7 +118,7 @@ public class HomeFragment extends Fragment {
                 String[] tempstrAry = new String[1];
                 String responseBody = tempstrAry[0];
 
-                BackgroundTask(apiURL, requestHeaders, text, responseBody);
+                BackgroundTask(apiURL, requestHeaders, text, responseBody, spinner.getSelectedItemPosition());
 //                Ctranslator trslt = new Ctranslator();
 //                trslt.post(apiURL, requestHeaders, text);
 
@@ -126,14 +129,14 @@ public class HomeFragment extends Fragment {
         });
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    void BackgroundTask(String apiURL, Map<String, String> requestHeaders, String text, String responseBody) {
+    void BackgroundTask(String apiURL, Map<String, String> requestHeaders, String text, String responseBody, int translatoritem) {
 //onPreExecute
         final String[] tempstr = {responseBody};
         backgroundtask = Observable.fromCallable(() -> {
 //doInBackground
             Ctranslator trslt = new Ctranslator();
             Spinner spinner = getView().findViewById(R.id.spinner2);
-            tempstr[0] = trslt.post(apiURL, requestHeaders, text);
+            tempstr[0] = trslt.post(apiURL, requestHeaders, text, translatoritem);
 
             String str = tempstr[0];//여기까지 변역 내용이 들어 온것 까지 확인했다!!!!
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,6 +71,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -93,40 +95,38 @@ public class HomeFragment extends Fragment {
 
         // fragment에서 뷰의 아이디를 얻는 방법
         Button translator = getView().findViewById(R.id.button);
-        translator.setOnClickListener(new View.OnClickListener() {
-         // 버튼 리스너를 만듬.. 뭐이리 기냐 코드가
-         // 간단하게 하는 방법 없나..
-        // 일단 테스트니까 빠르게 만들자.
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View V) {
-                String clientId = "oZqswaDIvHfIzdNNpKIY";//애플리케이션 클라이언트 아이디값";
-                String clientSecret = "5mHRY_NuV4";//애플리케이션 클라이언트 시크릿값";
 
-                String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
-                String text;
-                try {
-                    text = URLEncoder.encode(Korean.getText().toString(), "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    throw new RuntimeException("인코딩 실패", e);
-                }
+        translator.setOnClickListener(ViewOnClickListener -> {
+               String clientId = "oZqswaDIvHfIzdNNpKIY";//애플리케이션 클라이언트 아이디값";
+               String clientSecret = "5mHRY_NuV4";//애플리케이션 클라이언트 시크릿값";
 
-                Map<String, String> requestHeaders = new HashMap<>();
-                requestHeaders.put("X-Naver-Client-Id", clientId);
-                requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+               String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
+               String text;
+               try {
+                   if(Korean.getText().toString().equals("")) {
+                       Toast.makeText(getActivity(), "번역내용을 입력해주세요.", Toast.LENGTH_LONG).show();
+                       return;
+                   }
+                   text = URLEncoder.encode(Korean.getText().toString(), "UTF-8");
+               } catch (UnsupportedEncodingException e) {
+                   throw new RuntimeException("인코딩 실패", e);
+               }
 
-                String[] tempstrAry = new String[1];
-                String responseBody = tempstrAry[0];
+               Map<String, String> requestHeaders = new HashMap<>();
+               requestHeaders.put("X-Naver-Client-Id", clientId);
+               requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 
-                BackgroundTask(apiURL, requestHeaders, text, responseBody, spinner.getSelectedItemPosition());
+               String[] tempstrAry = new String[1];
+               String responseBody = tempstrAry[0];
+
+               BackgroundTask(apiURL, requestHeaders, text, responseBody, spinner.getSelectedItemPosition());
 //                Ctranslator trslt = new Ctranslator();
 //                trslt.post(apiURL, requestHeaders, text);
 
 
 //                result.setText(responseBody);
 
-            }
-        });
+           });
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void BackgroundTask(String apiURL, Map<String, String> requestHeaders, String text, String responseBody, int translatoritem) {

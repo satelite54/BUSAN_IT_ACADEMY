@@ -10,6 +10,111 @@
 
 </head>
 <body>
+    <!-- F12 눌러서 기기버튼을 누르면 모바일 기기에 적용되는 화면을 볼 수 있다. -->
+    <!-- 화면이 클 경우에 여백을 주는게 컨테이너 -->
+   <!-- 몇 가지 색깔은 부트스트랩에 저장되어있음. -->
+    <!-- <div class="container">
+
+        <button style="background-color: blueviolet;" class="btn btn-primary">버튼</button>
+        <button class="btn btn-success">버튼</button>
+        <button class="btn btn-danger">버튼</button>
+        <button class="btn btn-warning">버튼</button>
+        <button class="btn btn-info">버튼</button>
+        <button class="btn btn-light">버튼</button>
+    </div> -->
+
+<!-- 글자색:text 배경색:bg -->
+<!-- 마진, 패딩: m- p- (0-5) -->
+<!-- t 위 b 아래 / 왼쪽 r오른쪽 -->
+<!-- x는 좌우, y는 위 아래 -->
+    <!-- <div class="container">
+
+        <div class="p-3 ml-2 my-5 bg-primary text-white">.bg-primary</div>
+        <div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+        <div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+        <div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+        <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+        <div class="p-3 mb-2 bg-info text-dark">.bg-info</div>
+        <div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+        <div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+        <div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+        <div class="p-3 mb-2 bg-transparent text-dark">.bg-transparent</div>        
+    </div> -->
+    
+    <!-- <div class="container">
+        <h1 class="display-1">Display 1</h1>
+        <h1 class="display-2">Display 2</h1>
+        <h1 class="display-3">Display 3</h1>
+        <h1 class="display-4">Display 4</h1>
+        <h1 class="display-5">Display 5</h1>
+        <h1 class="display-6">Display 6</h1>
+
+        <p class="lead">
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+          </p>
+    </div> -->
+
+    <!-- 좌우 가운데 -->
+    <!-- <figure class="text-center">
+        <blockquote class="blockquote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </figcaption>
+      </figure> -->
+
+      <!-- 1.컨테이너 2.줄(row) 3.열(col)-->
+      <!-- <div class="container"> -->
+        <!-- <div class="row"> --> <!-- 한줄 : 12등분 까지 가능-->
+          <!-- <div class="col-lg-2 col-sm-4 bg-primary text-white"> --> <!-- 열 --> <!-- sm ,md, lg, xl, xxl 화면의 사이즈 -->
+            <!-- 열 하나
+          </div>
+          <div class="col-lg-4 col-sm-3 bg-danger">
+            열 둘
+          </div>
+          <div class="col-lg-4 col-sm-2 bg-warning">
+            열 셋
+          </div>
+        </div>
+      </div> -->
+
+      <div class="container">
+        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+        <div class="row">
+          <div class="col-md-8 bg-info">.col-md-8</div>
+          <div class="col-6 col-md-4 bg-info">.col-6 .col-md-4</div>
+        </div>
+      
+        <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+        <div class="row">
+          <div class="col-6 col-md-4 bg-danger">.col-6 .col-md-4</div>
+          <div class="col-6 col-md-4 bg-danger">.col-6 .col-md-4</div>
+          <div class="col-6 col-md-4 bg-danger">.col-6 .col-md-4</div>
+        </div>
+      
+        <!-- Columns are always 50% wide, on mobile and desktop -->
+        <div class="row">
+          <div class="col-6 bg-info">.col-6</div>
+          <div class="col-6 bg-info">.col-6</div>
+        </div>
+      </div>
+
+      <div class="container bg-info">
+        <div class="row align-items-center" style="height: 50vh;">
+            <!-- 상하 정렬 -->
+          <div class="col align-self-end">
+            1.첫번째
+          </div>
+          <div class="col align-self-center">
+            2.두번째
+          </div>
+          <div class="col align-self-start">
+            3.세번째
+          </div>
+        </div>
+      </div>
+
     <!-- 부트 스트랩 JS (1.제이쿼리, 2. 번들) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="

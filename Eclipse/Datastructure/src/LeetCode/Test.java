@@ -17,8 +17,12 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String a = "(1+(2*3)+((8)/4))+1";
-		maxDepth(a);
+		String a = "RLRRRLLRLL";
+		String b = "RLLLLRRRLR";
+		int  c = balancedStringSplit(a);
+		int d = balancedStringSplit(b);
+		System.out.println(c);
+		System.out.println(d);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -433,6 +437,36 @@ public class Test {
         }
         System.out.println(max);
     	return max; 
+    }
+    
+    public static int balancedStringSplit(String s) {
+        int count = 0;
+        int lCount = 0;
+        int rCount = 0;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == 'R') {
+                rCount++;
+            } else {
+                lCount++;
+            }
+            if(lCount == rCount) {
+                count++;
+                lCount=0;
+                rCount=0;
+            }
+        }
+        return count;
+    }
+    public static int xorOperation(int n, int start) {
+        int[] nAry = new int[n];
+        for(int i = 0; i < n; i++) {
+            nAry[i] = start + 2 * i;
+        }
+        int result = 0;
+        for(int j = 0; j < n; j++) {
+            result = result ^ nAry[j];
+        }
+        return result;
     }
 }
 

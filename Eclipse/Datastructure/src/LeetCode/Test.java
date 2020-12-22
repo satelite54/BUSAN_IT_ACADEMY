@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-
+import Util.CLog;
 import Util.CPrint;
 
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String a = "RLRRRLLRLL";
-		String b = "RLLLLRRRLR";
-		int  c = balancedStringSplit(a);
-		int d = balancedStringSplit(b);
-		System.out.println(c);
-		System.out.println(d);
+		String[] str1 = {"mislav", "stanko", "mislav", "ana"};
+		String[] str2 = {"stanko", "ana", "mislav"};
+		String a = solution3My(str1, str2);
+		int b = 0;
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -466,6 +466,308 @@ public class Test {
         for(int j = 0; j < n; j++) {
             result = result ^ nAry[j];
         }
+        return result;
+    }
+    
+    public class TreeNode {
+    	      int val;
+    	      TreeNode left; // 자식노드 왼쪽
+    	      TreeNode right; // 자식노드 오른쪽
+    	      TreeNode() {}
+    	      TreeNode(int val) { this.val = val; }
+    	      TreeNode(int val, TreeNode left, TreeNode right) {
+    	          this.val = val;
+    	          this.left = left;
+    	          this.right = right;
+    	      }
+    	  }
+    // 이진탐색트리
+    // 각 노드의 자식이 2개 이하인 트리
+    // 왼쪽 자식은 부모보다 작고, 오르쪽 자식은 부모보다 큼
+    // 아직 모르겠다 ㅠㅠ 자료구조 공부를 더해야할 듯..
+    public int rangeSumBST(TreeNode root, int L, int R) {
+    	int sum = 0;
+        if(root == null)
+            return 0;
+    
+        if(root.val >= L && root.val <= R ){
+             sum += root.val;
+             rangeSumBST(root.left,L,R);
+             rangeSumBST(root.right,L,R);
+        }
+        else if(root.val < L)
+            rangeSumBST(root.right,L,R);
+        else if(root.val > R)
+            rangeSumBST(root.left,L,R);
+    return sum;
+    }
+    
+    class OrderedStream {
+    	String[] data;
+		int idx;
+		
+		public OrderedStream(int n) {
+			data = new String[n + 1];
+			idx = 1;
+		}
+
+		public List<String> insert(int id, String value) {
+			data[id] = value;
+			List<String> out = new ArrayList<>();
+			if (data[idx] == null)
+				return out;
+			while (id < data.length && data[id] != null) {
+				out.add(data[id++]);
+				idx++;
+			}
+			return out;
+		}
+    }
+    
+//    Definition for singly-linked list.
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+    
+    public int getDecimalValue(ListNode head) {
+    	int value = 0;
+    	while(head != null) {
+    		value = value << 1 | head.val;
+    		head = head.next;
+    	}
+    	return value;
+    }
+    public int getDecimalValue1(ListNode head) {
+        if(head == null){
+            return 0;
+        }
+        List<Integer> list = new ArrayList<>();
+        while(head!=null){
+            list.add(head.val);
+            head = head.next;
+        }
+        int res = 0;
+        for(int i=0;i<list.size();i++){
+            res = ((res<<1)|list.get(i)); 
+        }
+        
+        return res;
+    }
+    public static int sumOddLengthSubarrays(int[] arr) {
+        
+    	// 5, 3, 1 번 반복
+    	int Arynanugi = 0;
+    	for(int i = 0; i < arr.length; i++) {
+    		
+    	}
+    	
+    	return Arynanugi;
+    }
+    public static String toLowerCase(String str) {
+    	return str.toLowerCase();
+    }
+    // 카카오 크레인 인형뽑기 게임
+    public static int solution1My(int[][] board, int[] moves) {
+        int answer = 0;
+        
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < moves.length; i++) {
+        	for(int j = 0; j < board.length; j++) {
+        		if(board[j][moves[i] - 1] > 0) {
+        			list.add(board[j][moves[i] - 1]);
+        			if(list.size() >= 2) {
+        				if(list.get(list.size() - 2).equals(list.get(list.size() - 1))) {
+        					list.remove(list.size() - 2);
+        					list.remove(list.size() - 1);
+        					++answer;
+        				}
+        			}
+        			board[j][moves[i] - 1] = 0;
+        			break;
+        		}
+        	}
+        }
+        
+        return answer * 2;
+    }
+    public int solution1(int[][] board, int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int move : moves) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[j][move - 1] != 0) {
+                    if (stack.isEmpty()) {
+                        stack.push(board[j][move - 1]);
+                        board[j][move - 1] = 0;
+                        break;
+                    }
+                    if (board[j][move - 1] == stack.peek()) {
+                        stack.pop();
+                        answer += 2;
+                    } else
+                        stack.push(board[j][move - 1]);
+                    board[j][move - 1] = 0;
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+    // 두 개 뽑아서 더하기
+    public static int[] solution2My(int[] numbers) {
+
+    	Set<Integer> hashset = new HashSet<Integer>();
+    	
+    	for(int i = 0; i < numbers.length; i++) {
+    		for(int j = numbers.length - 1; j >= 0; j--) {
+    			if(i == j)
+    				continue;
+    			hashset.add(numbers[i] + numbers[j]);
+    		}
+    	}
+    	int[] nAry = new int[hashset.size()];
+    	Iterator<Integer> iter = hashset.iterator();
+    	int i = 0;
+    	while(iter.hasNext()) {
+    		nAry[i] = iter.next();
+    		i++;
+    	}
+    	Arrays.sort(nAry);
+    	
+        return nAry;
+    }
+    // 완주하지 못한 선수 Hash
+    public static String solution3My(String[] participant, String[] completion) {
+//    	 List<String> list = new ArrayList<>(Arrays.asList(participant));
+//    	 for(int i = 0; i < completion.length; i++) {
+//    	 	list.remove(completion[i]);
+//    	 }
+//    	 return list.get(0);
+    	for(int i = 0; i < participant.length; i++) {
+    		for(int j = 0; j < completion.length; j++) {
+    			if(participant[i].equals(completion[j])) {
+    				participant[i] = "";
+    				completion[j] = "";
+    			}
+    		}
+    	}
+    	String result = "";
+    	for(int j = 0; j < participant.length; j++ ) {
+        	if(!participant[j].equals("")) {
+    			result = participant[j];
+    		}
+    	}
+    	return result;
+    }
+    public static String solution3(String[] participant, String[] completion) {
+        String result = "";
+        String temp = "";
+        
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+ 
+//        int i = 0;
+        
+//        while(i < completion.length){
+//            if(!completion[i].equals(participant[i])){
+//                temp = participant[i];
+//                break;
+//            }else{
+//                i++;
+//            }
+//        }
+        for(int i = 0; i < completion.length; i++) {
+        	if(!completion[i].equals(participant[i])) {
+        		temp = participant[i];
+        		break;
+        	}
+        }
+        
+        if(!temp.equals("")){
+        	result = temp;
+        }else{
+        	result = participant[participant.length-1];
+        }
+        
+        return result;
+	}
+    // 수포자 모의고사 ㅠㅠ
+    public static int[] solution4(int[] answers) {
+        int[] person1 = {1, 2, 3, 4, 5};
+        int[] person2 = {2, 1, 2, 3, 2, 4, 2, 5};
+        int[] person3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        
+        int person1Score= 0;
+        int person2Score= 0;        
+        int person3Score= 0;
+        
+        int person1namogi = 0;
+        person1namogi = answers.length % person1.length;
+        int person2namogi = 0;
+        person2namogi = answers.length % person2.length;
+        int person3namogi = 0;
+        person3namogi = answers.length % person3.length;
+        
+        List<Integer> AnswerSheet1 = new ArrayList<>();
+        for(int i = 0; i < Math.floor(answers.length / person1.length); i++) {
+        	for(int j = 0; j < person1.length; j++) {
+        		AnswerSheet1.add(person1[j]);
+        	}
+        }
+        List<Integer> AnswerSheet2 = new ArrayList<>();
+        for(int i = 0; i < Math.floor(answers.length / person2.length); i++) {
+        	for(int j = 0; j < person2.length; j++) {
+        		AnswerSheet2.add(person2[j]);
+        	}
+        }
+        List<Integer> AnswerSheet3 = new ArrayList<>();
+        for(int i = 0; i < Math.floor(answers.length / person3.length); i++) {
+        	for(int j = 0; j < person3.length; j++) {
+        		AnswerSheet3.add(person3[j]);
+        	}
+        }
+        
+        for(int i = 0; i < person1namogi; i++) {
+        	AnswerSheet1.add(person1[i]);
+        }
+        for(int i = 0; i < person2namogi; i++) {
+        	AnswerSheet2.add(person2[i]);
+        }
+        for(int i = 0; i < person3namogi; i++) {
+        	AnswerSheet3.add(person3[i]);
+        }
+        
+        int totalCnt1 = 0;
+        int totalCnt2 = 0;
+        int totalCnt3 = 0;
+        
+        for(int i = 0; i < answers.length; i++) {
+        	if(answers[i] == AnswerSheet1.get(i)) {
+        		totalCnt1++;
+        	}
+        	if(answers[i] == AnswerSheet2.get(i)) {
+        		totalCnt2++;
+        	}
+        	if(answers[i] == AnswerSheet3.get(i)) {
+        		totalCnt3++;
+        	}
+        }
+        
+        List<Integer> listLeast = new ArrayList<>();
+        int maxCount = Math.max(totalCnt1, Math.max(totalCnt2, totalCnt3));
+        if(maxCount == totalCnt1) listLeast.add(1);
+        if(maxCount == totalCnt2) listLeast.add(2);
+        if(maxCount == totalCnt3) listLeast.add(3);
+        
+        int[] result = new int[listLeast.size()];
+        for(int i = 0; i < result.length; i++) {
+        	result[i] = listLeast.get(i);
+        }
+        Arrays.sort(result);
         return result;
     }
 }

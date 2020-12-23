@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var personAge = 90;
+        var personDay = 0;
+        var personWeek = 0;
+        var personMon = 0;
+        function caculatePersonAge (X) {
+            personDay = (personAge - X) * 365;
+            personWeek = (personAge - X) * 52;
+            personMon = (personAge - X) * 12;
+        }
+        caculatePersonAge(40);
+        console.log(personDay+'일 , ' + personWeek + '주 , ' + personMon + '달 남았습니다.');
+    </script>
+    <script src=""></script>
+</body>
+</html>

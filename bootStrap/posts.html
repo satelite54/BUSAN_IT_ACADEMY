@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- 폰트오썸 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- 네비게이션 바 시작-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <!-- 컨테이너 시작 -->
+        <div class="container">
+            <a href="index.html" class="navbar-brand">로고</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- collapse 묶음 시작 -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- 왼쪽 메뉴 -->
+                <ul class="navbar-nav">
+                    <li class="nav-item px-2">
+                        <a href="index.html" class="nav-link">대시보드</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="posts.html" class="nav-link active">포스트</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="categories.html" class="nav-link">카테고리</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="users.html" class="nav-link">유저</a>
+                    </li>
+                </ul>
+                <!-- 오른쪽 메뉴 -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown mr-3">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fas fa-user"></i> 홍길동
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user-circle"></i> Profile
+                            </a>
+                            <a href="settings.html" class="dropdown-item">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="nav-link">
+                            <i class="fas fa-user-times"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+                <!-- 오른쪽 메뉴 끝 -->
+            </div>
+            <!-- collapse 묶음 끝 -->
+        </div>
+        <!-- 컨테이너 끝 -->
+    </nav>
+    <!-- 최 상단 검은 네브바 끝-->
+    <!-- header 시작 -->
+    <header id="main-header" class="py-2 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1><i class="fas fa-pencil-alt"></i> Posts</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header 끝 -->
+    <!-- 모달 액션 버튼 -->
+    <section id="search" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="포스트 찾기...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-5">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 모달 액션 버튼 끝-->
+    <!-- POSTS -->
+    <section id="posts">
+        <div class="container">
+            <div class="row">
+                <!-- 왼쪽 col-9 -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>최근 게시물</h4>
+                        </div>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>제목</th>
+                                    <th>카테고리</th>
+                                    <th>날짜</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Post One</td>
+                                    <td>웹 개발</td>
+                                    <td>2019 12 02</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Post Two</td>
+                                    <td>자바</td>
+                                    <td>2019 12 04</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Post Three</td>
+                                    <td>웹 개발</td>
+                                    <td>2019 12 05</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Post Four</td>
+                                    <td>파이썬</td>
+                                    <td>2019 12 06</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Post Five</td>
+                                    <td>SQL</td>
+                                    <td>2019 12 07</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Post Six</td>
+                                    <td>자바</td>
+                                    <td>2019 12 12</td>
+                                    <td>
+                                        <a href="details.html" class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> 열기
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- 페이지네이션 -->
+                        <nav class="ml-4">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">이전</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a href="#" class="page-link">1</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">2</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">3</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">다음</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- POSTS 끝 -->
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="lead text-center">
+                        Dashboard &copy;
+                        <span id="year"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- 모달 -->
+    <!-- ADD POST MODAL -->
+    <div class="modal fade" id="addPostModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Add Post</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="title">제목</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="category">카테고리</label>
+                            <select class="form-control">
+                                <option value="">웹개발</option>
+                                <option value="">자바</option>
+                                <option value="">SQL</option>
+                                <option value="">파이썬</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">이미지 업로드</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" />
+                                <label for="image" class="custom-file-label">Choose File</label>
+                            </div>
+                            <small class="form-text text-muted">Max Size 3mb</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="body">내용</label>
+                            <textarea name="editor1" class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">
+                        저장하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ADD CATEGORY MODAL -->
+    <div class="modal fade" id="addCategoryModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Add Category</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="title">제목</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal">
+                        저장하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ADD USER MODAL -->
+    <div class="modal fade" id="addUserModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Add User</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">이름</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">이메일</label>
+                            <input type="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">비밀번호</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">비밀번호 확인</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">
+                        저장하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    ​
+
+    <!-- 부트스트랩 JS (1.제이쿼리, 2.번들) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        $("#year").text(new Date().getFullYear());
+    </script>
+</body>
+
+</html>

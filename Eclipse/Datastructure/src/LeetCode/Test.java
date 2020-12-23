@@ -1,5 +1,6 @@
 package LeetCode;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,10 +20,9 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] str1 = {"mislav", "stanko", "mislav", "ana"};
-		String[] str2 = {"stanko", "ana", "mislav"};
-		String a = solution3My(str1, str2);
-		int b = 0;
+		int[] array = {1, 5, 2, 6, 3, 7, 4};
+		int[][] commands = {{2,5,3},{4,4,1},{1,7,3}};
+		solution6My(array, commands);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -769,6 +769,49 @@ public class Test {
         }
         Arrays.sort(result);
         return result;
+    }
+    // Ã¼À°º¹
+    public static int solution5My(int n, int[] lost, int[] reserve) {
+    	// Å½¿å¹ý
+    	int[] all = new int[n];
+
+    	for (int i : reserve)
+    		all[i - 1]++;
+
+    	for (int i : lost)
+    		all[i - 1]--;
+
+    	for (int i = 0; i < all.length; i++)
+    		if (all[i] < 0)
+    			if (i != all.length - 1 && all[i + 1] > 0) {
+    				all[i]++;
+    				all[i + 1]--;
+    			} else if (i != 0 && all[i - 1] > 0) {
+    				all[i]++;
+    				all[i - 1]--;
+    			}
+
+    	int answer = 0;
+
+    	for (int i = 0; i < all.length; i++)
+    		if (!(all[i] < 0))
+    			answer++;
+
+    	return answer;
+    }
+    public static int[] solution6My(int[] array, int[][] commands) {
+    	int[] answer = new int[commands.length];
+    	
+    	for(int i = 0; i < commands.length; i++) {
+    		int debug1= commands[i][0] - 1;
+    		int debug2= commands[i][1] - 1;
+    		
+    		int[] nArytemp = Arrays.copyOfRange(array, commands[i][0] - 1, commands[i][1]);
+    		Arrays.sort(nArytemp);
+    		answer[i] = nArytemp[commands[i][2] - 1];
+    	}
+    	
+    	return answer;
     }
 }
 

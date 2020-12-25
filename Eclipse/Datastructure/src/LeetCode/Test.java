@@ -1,17 +1,11 @@
 package LeetCode;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import Util.CLog;
 import Util.CPrint;
@@ -20,9 +14,9 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] array = {1, 5, 2, 6, 3, 7, 4};
-		int[][] commands = {{2,5,3},{4,4,1},{1,7,3}};
-		solution6My(array, commands);
+		String[] str1 = {"abcd", "abce", "cdx"};
+		int b= 2;
+		solution13My(str1, b);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -812,6 +806,141 @@ public class Test {
     	}
     	
     	return answer;
+    }
+    public static String solution7My(int a, int b) {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(Calendar.YEAR, 2016);
+    	cal.set(Calendar.MONTH, a - 1);
+    	cal.set(Calendar.DATE, b);
+    	
+    	String[] strAry = {"SUN", "MON", "TUE", "WED","THU", "FRI", "SAT"};
+    	return strAry[cal.get(Calendar.DAY_OF_WEEK) - 1];
+    }
+    
+    public static int solution8My(int n) {
+    	
+//    	for(int i = 0; i < dno / 2; i++) {
+//		char a;
+//		a = cno[i];
+//		cno[i] = cno[dno - 1 - i];
+//		cno[dno - 1 - i] = a;
+//	}
+    	
+    	int dno;
+    	char[] cno = new char[32];
+    	dno = cardConvR(n, 3, cno);
+    	int result = 0;
+    	for(int i = 0; i < dno - 1; i++) {
+    		int temp = (int)Math.pow(3, i);
+    		result += Character.getNumericValue(cno[dno - 1 - i]) * (int)Math.pow(3, i);
+    	}
+    	
+    	return result;
+    }
+	
+    public static int cardConvR(int x, int r, char[] d) {
+		int digits = 0;
+		String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		
+		do {
+			d[digits++] = dchar.charAt(x % r);
+			x /= r;
+		} while (x != 0);
+			return digits;
+	}
+    
+    public static String solution9My(String str) {
+    	
+    	char[] cAry = str.toCharArray();
+    	String result = "";
+    	if(cAry.length % 2 == 1) {
+    		return Character.toString(cAry[cAry.length/2]);
+    	} else {
+    		return Character.toString(cAry[cAry.length/2 - 1]) + Character.toString(cAry[cAry.length/2]);
+    	}
+    }
+    
+    public static int[] solution10My(int[] arr) {
+//    	Set<Integer> set = new HashSet<>();
+//    	for(int i = 0; i < arr.length; i++) {
+//    		set.add(arr[i]);
+//    	}
+//    	int[] result = new int[set.size()];
+//    	Iterator<Integer> iter = set.iterator();
+//    	int i = 0;
+//    	while(iter.hasNext()) {
+//    		result[i] = iter.next();
+//    		i++;
+//    	}
+//    	
+    	List<Integer> list = new ArrayList<Integer>();
+    	// 처음 temp 값 지정
+    	list.add(arr[0]);
+    	for(int i = 0; i < arr.length - 1; i++) {
+    		if(arr[i] == arr[i + 1]) {
+    			continue;
+    		} else {
+				list.add(arr[i + 1]);
+			}
+    	}
+    	
+    	int[] result = new int[list.size()];
+    	for(int i = 0; i < result.length; i++) {
+    		result[i] = list.get(i);
+    	}
+    	
+    	return result;
+    }
+    public static int[] solution11My(int[] arr, int divisor) {
+    	Arrays.sort(arr);
+    	List<Integer> list = new ArrayList<>();
+    	for(int i = 0; i < arr.length; i++) {
+    		if(arr[i] % divisor == 0) {
+    			list.add(arr[i]);
+    		}
+    	}
+        if(list.size() < 1) {
+    		list.add(-1);
+    	}
+    	int[] result = new int[list.size()];
+
+    	for(int i = 0; i < list.size(); i++) {
+    		result[i] = list.get(i);
+    	}
+
+    	return result;
+    }
+    public static long solution12My(int a, int b) {
+    	
+    	int forCnt = Math.abs(Math.abs(a - b) + 1);
+    	long resultsum = 0;
+    	if(a > b) {
+    		for(int i = 0; i < forCnt; i++) {
+    			resultsum += b++;
+    		}
+    	} else if(a < b) {
+    		for(int i = 0; i < forCnt; i++) {
+    			resultsum += a++;
+    		}
+    	} else {
+    		return a;
+    	}
+    	return resultsum;
+    }
+    public static String[] solution13My(String[] strings, int n) {
+        String[] answer = {};
+        ArrayList<String> myArr = new ArrayList<>();
+        
+        for(int i=0; i<strings.length; ++i)
+            myArr.add("" + strings[i].charAt(n) + strings[i]);
+        
+        Collections.sort(myArr);
+        answer = new String[myArr.size()];
+        
+        for(int i=0; i<myArr.size(); ++i)
+            answer[i] = myArr.get(i).substring(1, myArr.get(i).length());
+        
+        return answer;
     }
 }
 

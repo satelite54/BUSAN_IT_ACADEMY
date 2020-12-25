@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\..\\Users\\satellite\\Documents\\카카오톡 받은 파일\\WEB (2)\\dashBoard\\css"
+		},
+		{
+			"path": "..\\..\\..\\Users\\satellite\\Documents\\카카오톡 받은 파일\\WEB (2)\\dashBoard\\js"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "bootStrap"
+	}
+}

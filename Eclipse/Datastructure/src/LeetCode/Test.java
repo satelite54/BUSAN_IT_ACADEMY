@@ -2,10 +2,8 @@ package LeetCode;
 
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.Map.Entry;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import Util.CLog;
 import Util.CPrint;
@@ -14,9 +12,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] str1 = {"abcd", "abce", "cdx"};
-		int b= 2;
-		solution13My(str1, b);
+		solution23My(" hello  world   wdwdw");
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -942,5 +938,170 @@ public class Test {
         
         return answer;
     }
-}
+    
+    public boolean soultion14My(String s) {
+		int pCnt = 0;
+		int yCnt = 0;
+		
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i)==80 || s.charAt(i)==112)
+				++pCnt;
+			 else if(s.charAt(i)==89 || s.charAt(i)== 121)
+				++yCnt;
+		}
+		
+		if(pCnt == yCnt)
+			return true;
+		else
+			return false;
+	}
+    public boolean solution14(String s) {
+        s = s.toUpperCase();
+
+        return s.chars().filter( e -> 'P'== e).count() == s.chars().filter( e -> 'Y'== e).count();
+    }
+    public static String soultion15My (String s) {
+    	// 내림차순 정렬
+    	String[] strAry = s.split("");
+    	return Stream.of(strAry).sorted(Comparator.reverseOrder()).collect(Collectors.joining());
+	}
+    public static String solution15(String s) {
+        String[] arrays = s.split("");
+
+        Collections.sort(Arrays.asList(arrays), Collections.reverseOrder());
+
+        return String.join("", arrays);
+    }
+    public static boolean solution16My(String s) {
+    	
+    	if(!(s.length() == 4 || s.length() == 6))
+    		return false;
+    	
+        for(int i = 0; i < s.length(); i++) {
+        	int temp;
+        	temp = Character.getNumericValue(s.charAt(i));
+            if((temp < 10 && temp >= 0) != true) {
+            	return false;
+            }
+        }
+        return true;
+    }
+    public static String solution17My(String[] seoul) {
+//    	for(int i = 0; i < seoul.length; i++) {
+//    		if(seoul[i].equals("Kim")) {
+//    			return "김서방은 " + i + "에 있다";
+//    		}
+//    	}
+    	// 왜 정렬하면 답이 안나올까??????
+    	Arrays.sort(seoul);
+    	Arrays.binarySearch(seoul, "Kim");
+    	for(int i = 0; i < seoul.length; i++) {
+    		if(seoul[i].equals("Kim")) {
+    			return "김서방은 " + i + "에 있다";
+    		}
+    	}
+    	
+        return "-1";
+    }
+    public static int solution18My(int n) {
+    	  // 입력받은 수 만큼 배열에 모두 초기화 해둔다
+
+    	int[] arr = new int[n * n]; 
+    	int Cnt = 0;
+        for (int i = 2; i <= n; i++) {
+            arr[i] = i;
+        }
+        
+        for (int i = 2; i <= n; i++) { 
+            if (arr[i] == 0) // 이미 체크된 수의 배수는 확인하지 않는다
+                continue;
+            for (int j = i + i; j <= n; j += i) { // i를 제외한 i의 배수들은 0으로 체크
+                arr[j] = 0;
+            }
+        }
+        
+        for(int i = 2; i <= n; i++) {
+        	if(arr[i] != 0)
+        		Cnt++;
+        }
+        return Cnt;
+    }
+    public static int solution19My(String s) {
+    	return Integer.parseInt(s);
+    }
+    public static int solution20My(int[] a, int[] b) {
+    	int result = 0;
+    	for(int i = 0; i < a.length; i++) {
+    		result += a[i]*b[i];
+    	}
+    	return result;
+    }
+    public static String solution21My(String s, int n) {
+    	char[] cAry = s.toCharArray();
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0; i < cAry.length; i++) {
+    		if(cAry[i] == ' ') {
+    			sb.append(' ');
+    			continue;
+    		}
+    		//대문자 처리
+    		if(cAry[i] >= 'A' && cAry[i] <= 'Z') {
+    			//만약 cAry에 n을 더 했을때 Z를 초과시
+    			if(cAry[i] + n > 'Z') {
+    				//초과한 만큼 A에 더해준다.
+    				char a = (char)('A' + cAry[i] + n - 'Z' - 1);
+    				sb.append(a);
+    			} else {
+    				sb.append((char)(cAry[i] + n));
+    			} continue;
+    		}
+    		//소문자 처리
+    		if(cAry[i] >= 'a' && cAry[i] <= 'z') {
+    			if(cAry[i] + n > 'z') {
+    				//초과한 만큼 A에 더해준다.
+    				char a = (char)('a' + cAry[i] + n - 'z' - 1);
+    				sb.append(a);
+    			} else {
+    				sb.append((char)(cAry[i] + n));
+    			}
+    		}
+    	}
+    	return sb.toString();
+    }
+    public static int solution22My(int n) {
+        List list = new ArrayList<Integer>();
+        for(int i = 1; i <= n; i++) {
+        	if(n % i == 0)
+        		list.add(i);
+        }
+        
+        return list.stream().mapToInt(i -> (Integer)i).sum();
+    }
+	public static String solution23My(String s) {
+    	
+    	String[] strAry = s.split;
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0; i < strAry.length; i++) {
+    		if(strAry.equals("") && i == 0) {
+    			sb.append(" ");
+    			continue;
+    		}
+    		if(strAry.equals("")) {
+    			sb.append(" ");
+    			continue;
+    		}
+    		for(int j = 0; j < strAry[i].length(); j++) {
+    			if(j % 2 == 0) {
+    				sb.append(Character.toUpperCase(strAry[i].charAt(j)));
+    			} else {
+    				sb.append(Character.toLowerCase(strAry[i].charAt(j)));
+    			}
+    		}
+    	}
+    	
+    	
+    	return strAry.toString();
+    }
+  }
+
 

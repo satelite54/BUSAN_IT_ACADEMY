@@ -12,7 +12,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		solution23My(" hello  world   wdwdw");
+		long lg = 500000000;
+		solution27My(lg);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -1079,7 +1080,7 @@ public class Test {
     }
 	public static String solution23My(String s) {
     	
-    	String[] strAry = s.split;
+    	String[] strAry = s.split("");
     	StringBuilder sb = new StringBuilder();
     	for(int i = 0; i < strAry.length; i++) {
     		if(strAry.equals("") && i == 0) {
@@ -1099,9 +1100,71 @@ public class Test {
     		}
     	}
     	
-    	
     	return strAry.toString();
     }
-  }
+	
+	public static int solution24My(int n) {
+		int result = 0;
+		
+		String[] strAry = Integer.toString(n).split("");
+		
+		for(int i = 0; i < strAry.length; i++) {
+			result += Integer.parseInt(strAry[i]);
+		}
+		
+		return result;
+	}
+	
+	public static int[] solution25My(long n) {	
+		String[] strAry = Long.toString(n).split("");
+		int[] nAry = new int[strAry.length];
+		int temp = strAry.length - 1;
+		for(int i = 0; i < strAry.length; i++) {
+			nAry[i] = Integer.parseInt(strAry[temp]);
+			--temp;
+		}
+		
+		return nAry;
+	}
+	public static long solution26My(long n) {		
+		ArrayList<Long> list = new ArrayList<Long>();
+		while(n > 0) {
+			list.add((n % 10));
+			n /= 10;
+		}
+		Collections.sort(list, Collections.reverseOrder());
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < list.size(); i++) {
+			sb.append(list.get(i));
+		}
+		return Long.parseLong(sb.toString());
+	}
+	public static long solution27My(long n) {			
+		double x = Math.sqrt(n);
+		long x1 = (long) x;
+		if(x1 < x) {
+			return -1; 
+		} else {
+			return (long) Math.pow(x1 + 1, 2);	
+		}
+	}
+	
+	public static int[] solution28My(int[] n) {
+		if(n.length == 1) {
+			int[] nAry = {-1};
+			return nAry;
+		}
+		Integer[] IntAry = new Integer[n.length];
+		for(int i = 0; i < n.length; i++) {
+			IntAry[i] = n[i];
+		}
+		Arrays.sort(IntAry, Collections.reverseOrder());
+		int[] nAry = new int[n.length - 1];
+		for(int i = 0; i < n.length - 1; i++) {
+			nAry[i] = IntAry[i];
+		}
+		return nAry;
+	}
+}
 
 

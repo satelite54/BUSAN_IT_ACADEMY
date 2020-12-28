@@ -1,8 +1,13 @@
 package LeetCode;
 
 import java.awt.RenderingHints.Key;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,8 +18,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nAry = {4, 5, 3, 2, 1};
-		solution28My(nAry);
+		int[] a = {1,2,2,1,3};
+		solution38My(5, a);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -1222,6 +1227,333 @@ public class Test {
 
         return Math.abs(locationX-numberX) + Math.abs(locationY - numberY);
 
+    }
+    public static int[] solution29My(int n, int m) {
+    	
+    	int gcd = gcd(n , m); // 최대공약수
+    	int gcd1 = n * m / gcd; // 최소공배수
+    	
+    	int[] result = new int[2]; 
+    	
+    	result[0] = gcd;
+    	result[1] = gcd1;
+        return result;
+    }
+    public static int gcd(int n, int m) { // 유클리드 호제법 (최대공약수 구하기)
+		if(m == 0) return n;
+		return gcd(m, n%m);
+	}
+    
+    public static int solution30My(int num) { //콜라츠 추측
+    	// 입력된 수가 짝수면 2나눔
+    	// 입력된 수가 홀수면 3곱하고 1을 더함
+    	// 같은 작업 반복해서 1이될때 까지 반복.
+    	int Cnt = 0;
+    	long tempnum = num;
+    	while(tempnum != 1) {
+    		Cnt++;
+    		if(Cnt == 501) {
+    			Cnt = -1;
+    			break;
+    		}
+    		if(tempnum % 2 == 0) {
+    			tempnum /= 2;
+        	} else {
+        		tempnum *= 3;
+        		++tempnum;
+        	}	
+    	}
+        return Cnt;
+    }
+    
+    public static double solution31My (int[] arr) {
+    	
+    	double AVG = avg(arr);
+    	
+    	return AVG;
+    }
+    
+    public static double avg(int[] nAry) {
+    	double temp = 0.0;
+    	for(int i = 0; i < nAry.length; i++) {
+    		temp += nAry[i];
+    	}
+    	temp /= nAry.length;
+    	return temp;
+	}
+    public static boolean solution32My (int x) {
+    	//하샤드 수
+    	int tempX = x;
+    	int hasadNum = 0;
+    	while(x != 0) {
+    		hasadNum += x % 10;
+    		x /= 10;
+    	}
+    	if(tempX % hasadNum == 0) return true;
+    	else return false;
+    }
+    public static String solution33My(String phone_number) {
+    	StringBuilder result = new StringBuilder();
+    	
+    	for(int i = 0; i < phone_number.length() - 4; i++) {
+    		result.append('*');
+    	}
+    	result.append(phone_number.substring(phone_number.length() - 3, phone_number.length() + 1));
+    	return result.toString();
+    }
+    
+    public static int[][] solution34My(int[][] arr1, int[][] arr2) {
+		int[][] n2Ary = new int[arr1.length][arr1[0].length];
+		
+		for(int i = 0; i < arr1.length; i++) {
+			for(int j = 0; j < arr1[0].length; j++) {
+				n2Ary[i][j] = arr1[i][j] + arr2[i][j];
+			}
+		}
+		return n2Ary;
+	}
+    public static long[] solution34My(int x, int n) {
+		long[] nAry = new long[n];
+		int temp = x;
+		long x1 = 0;
+		for(int i = 0; i < n; i++) {
+			x1 += temp;
+			nAry[i] = x1;
+		}
+		
+    	return nAry;
+	}
+    public static void solution35My(int a, int b) {
+    	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		char[][] c2Ary = new char[b][a];
+		Arrays.fill(c2Ary[0], '*');
+		StringBuilder sb = new StringBuilder();
+		sb.append(c2Ary[0]);
+		for(int i = 0; i < b; i++) {
+    		try {
+				bw.write(sb.toString());
+				bw.newLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+    public static int solution36My(int[] d, int budget) {
+		int Cnt = 0;
+		int plus = 0;
+		Arrays.sort(d);
+		for(int i = 0; i < d.length; i++) {
+			plus += d[i];
+			if(plus > budget)
+				break;
+			else {
+				Cnt++;
+			}
+		}
+		return Cnt;
+	}
+    
+    public static String[] solution37My(int n, int[] arr1, int[] arr2) {
+    	// 첫번째 지도에서 이진수 구하기.
+    	int[] nAry = new int[n];
+    	String[] strAry = new String[n];
+    	StringBuilder temp = new StringBuilder();
+    	for(int i = 0; i < arr1.length; i++) {
+    		temp.setLength(0);
+    		for(int j = 0; j < n - Integer.toBinaryString(arr1[i] | arr2[i]).length(); j++) {
+    			temp.append(0);
+    		}
+    		temp.append(Integer.toBinaryString(arr1[i] | arr2[i]));
+    		
+    		strAry[i] = temp.toString();
+    	}
+    	String[] Result = new String[n];
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0; i < strAry.length; i++) {
+    		sb.setLength(0);
+    		for(int j = 0; j < strAry[i].length(); j++) {
+    			if(Character.getNumericValue(strAry[i].charAt(j)) == 0) {
+    				sb.append(' ');
+    			} else {
+					sb.append('#');
+				}
+    		}
+    		Result[i] = sb.toString();
+    	}
+    	return Result;
+    }
+    
+    public static int[] solution38My(int N, int[] stages) {
+    	// 실패율 계산          클리어 못한사람/ 클리어 한사람
+    	Double[] DAry = new Double[N];
+    	double fastNotClear = 0;
+    	for(int i = 1; i < N + 1; i++) {
+        	double NotClear = 0;
+        	double Clear = 0;        	
+    		for(int j = 0; j < stages.length; j++) {
+    			if(stages[j] == 0)
+    				continue;
+    			if(i < stages[j]) {
+    				Clear++;
+    			}
+    			else {
+    				NotClear++;
+    				stages[j] = 0;
+    			}
+    		}
+    		
+    		DAry[i - 1] = NotClear / (Clear + NotClear);
+    	}
+    	Double[] DAryCopy = Arrays.copyOf(DAry, DAry.length);
+    	Arrays.sort(DAry, Collections.reverseOrder());
+    	List<Integer> list = new ArrayList<Integer>();
+    	
+    	List<Integer> list1 = new ArrayList<Integer>();
+    	for(int i = 0; i < DAry.length; i++) {
+    		for(int j = 0; j < DAryCopy.length; j++) {
+    			if(DAryCopy[j] == DAry[i]) {
+    				if(Double.isNaN(DAryCopy[j])) {
+    					list1.add(j + 1);
+    					continue;
+    				}
+    				
+    				list.add(j + 1);
+    			}
+    		}
+    	}
+    	
+    	for(int i = 0; i < list1.size(); i++) {
+    		list.add(list1.get(i));
+    	}
+    	
+    	return list.stream().mapToInt(i -> (Integer)i).toArray();
+    }
+    
+    public static int[] solution38(int N, int[] laststages) {
+        int nPlayers = laststages.length;
+        int[] nStagePlayers = new int[N + 2];
+        for (int stage : laststages) {
+            nStagePlayers[stage] += 1;
+        }
+
+        int remainingPlayers = nPlayers;
+        List<Stage> stages = new ArrayList<>();
+        for (int id = 1 ; id <= N; id++) {
+            double failure = (double) nStagePlayers[id] / remainingPlayers;
+            remainingPlayers -= nStagePlayers[id];
+
+            Stage s = new Stage(id, failure);
+            stages.add(s);
+        }
+        Collections.sort(stages, Collections.reverseOrder());
+
+        int[] answer = new int[N];
+        for (int i = 0; i < N; i++) {
+            answer[i] = stages.get(i).id;
+        }
+        return answer;
+    }
+    
+    static class Stage implements Comparable<Stage> {
+        public int id;
+        public double failure;
+
+        public Stage(int id_, double failure_) {
+            id = id_;
+            failure = failure_;
+        }
+
+        @Override
+        public int compareTo(Stage o) {
+            if (failure < o.failure ) {
+                return -1;
+            }
+            if (failure > o.failure ) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+    public static int solution39My(String dartResult) {
+		
+    	Map<Integer, Character> hashmap = new HashMap<Integer, Character>();
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0; i < dartResult.length() * 2; i += 2) {
+    		if(dartResult.charAt(i) == '*') {
+    			hashmap.put(i, '*');
+    			i--;
+    			continue;
+    		}
+    		if(dartResult.charAt(i) == '#') {
+    			hashmap.put(i, '#');
+    			i--;
+    			continue;
+    		}
+    		sb.append(dartResult.charAt(i));
+    	}
+    	char[] cAry = sb.toString().toCharArray();
+    	int result = 0;
+    	for(int i = 0; i < cAry.length + 1; i++) {
+    		if(cAry[i] >= 49 && cAry[i] <= 57) {
+    			// 1이고 다음 글자에 0 있는지 없는지 검사
+    			if(cAry[i] == 49) {
+    				if(cAry[i + 1] == 48) {
+    					// 있으면 10으로 간주
+    					
+    				}
+    				else { // 문자면
+    					
+    				}
+    			}
+    			else {
+    				
+    			}
+    		}
+    		
+    		if(i == cAry.length - 1)
+    			break;
+    	}
+    	
+    	
+    	return 0;
+	}
+    public int solution39(String dartResult) {
+        char[] darts = dartResult.toCharArray();
+        int[] score = new int[3];
+        int cnt = -1;
+ 
+        for(int i = 0; i < darts.length; i++) {
+            if(darts[i] >= '0' && darts[i] <= '9') {
+                cnt++;
+                if(darts[i] == '1' && darts[i+1] == '0') {
+                    score[cnt] = 10;
+                    i++;
+                } else {
+                    score[cnt] = darts[i] - '0';
+                }
+            } else if(darts[i] == 'D') {
+                score[cnt] *= score[cnt];
+            } else if(darts[i] == 'T') {
+                score[cnt] *= score[cnt] * score[cnt];
+            } else if(darts[i] == '*') {
+                if(cnt > 0) {
+                    score[cnt-1] *= 2;
+                }
+                score[cnt] *= 2;
+            } else if(darts[i] == '#') {
+                score[cnt] *= -1;
+            }
+        }
+        return score[0] + score[1] + score[2];
     }
 }
 

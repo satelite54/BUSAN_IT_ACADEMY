@@ -21,5 +21,15 @@ public class StackExample {
 		System.out.println(stack1.isEmpty());
 		System.out.println(stack1.isFull());
 		System.out.println(stack1.size());
+		
+		Gstack<Integer> gstack = new Gstack<>(4);
+		Integer Oint = 1;
+		gstack.push(Oint);
+		gstack.push(Oint);
+		gstack.push(Oint);
+		gstack.push(Oint);
+		gstack.pop();
+		System.out.println(gstack.size());
+		gstack.dump();
 	}
 }

@@ -18,8 +18,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] a = {1,2,2,1,3};
-		solution38My(5, a);
+		String[] strAry = {"BACDE", "CBADF", "AECB", "BDA"};
+		skilltree("CBD", strAry);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -88,7 +88,7 @@ public class Test {
             max = Math.max(max, candy);
         }
         
-        List<Boolean> res = new ArrayList();
+        List<Boolean> res = new ArrayList<Boolean>();
         for (int candy : candies) {
             res.add(candy + extraCandies >= max);
         }
@@ -1076,7 +1076,7 @@ public class Test {
     	return sb.toString();
     }
     public static int solution22My(int n) {
-        List list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<Integer>();
         for(int i = 1; i <= n; i++) {
         	if(n % i == 0)
         		list.add(i);
@@ -1242,7 +1242,10 @@ public class Test {
     public static int gcd(int n, int m) { // 유클리드 호제법 (최대공약수 구하기)
 		if(m == 0) return n;
 		return gcd(m, n%m);
-	}
+	} // 큰 수를 작은 수로 나눈 나머지를 구한다.(MOD 연산)
+    // 그 다음 나머지를 구한 수와 나머지로 또 MOD 연산을 한다. 
+    // 계속 반복
+    // 나머지가 0이 되었을 때
     
     public static int solution30My(int num) { //콜라츠 추측
     	// 입력된 수가 짝수면 2나눔
@@ -1555,6 +1558,81 @@ public class Test {
         }
         return score[0] + score[1] + score[2];
     }
+    // 프로그래머스 레벨 1 끝
+    // 레벨 2 시작
+    public static String country124(int n) {
+        String[] numbers = {"4", "1", "2"};
+        String answer = "";
+        
+        int num = n;
+        
+        while(num > 0){
+            int remainder = num % 3;
+            num /= 3;
+            
+            if(remainder == 0) num--;
+            
+            answer = numbers[remainder] + answer;
+        }
+        
+        return answer;
+        // 기본적으로 n진수는 0 ~ n - 1까지의 숫자인데
+        // 124 나라에서는 0이 없이 4가 존재함으로
+        // 3의 배수일때 다음 자릿수가 1증가하는게 아니기 때문에
+        // 1을 빼주어야한다.
+    }
+    
+    public static int skilltree(String skill, String[] skill_trees) {
+		int answer = 0;
+				
+		int index = 0;
+		while(true) {
+			String skill_tree = skill_trees[index];
+			String skill_clone = new String(skill_tree);
+			int size = skill_tree.length();
+			for (int i =0; i < size; i++) {
+				String oneSkill = String.valueOf(skill_clone.charAt(i));
+				if (!skill.contains(oneSkill)) {
+					skill_tree = skill_tree.replace(oneSkill, "");
+				}
+			}
+			if (skill.indexOf(skill_tree) == 0) {
+				answer++;
+			}
+			index++;
+			if(index == skill_trees.length) break;
+		}
+		
+		return answer;
+    }
+    
+    public static long Finesquare(int w, int h) {
+    	long result = gcd(w, h);
+    	return ((long)w * (long)h) - ((((long)w / result) + ((long)h / result) - 1) * result);
+	}
+    
+    public static int Truckpassingthebridge(int bridge_length, int weight, int[] truck_weights) {
+    	
+    	Stack<Integer> Waitstack = new Stack<>();
+    	Stack<Integer> CrossStack = new Stack<>();
+    	for(int i = truck_weights.length - 1; i >= 0; i--) {
+    		Waitstack.push(truck_weights[i]);
+    	}
+    	int sumtruckWeight = 0;
+    	//다리를 건너는 트럭들의 무게를 계산해서 다리를 건너는 트럭에 넣어주는데
+    	int[] CntTime = new int[Waitstack.size()];
+    	while(CrossStack.size() != 0 || Waitstack.size() != 0) {
+    		
+    		for(int i = 0; i < CrossStack.size(); i++) {
+    			sumtruckWeight += CrossStack.get(i);
+    			if(sumtruckWeight <= weight) {
+    				CrossStack.push(Waitstack.pop());
+    			}
+    		}
+    	}
+    	
+    	return 1;
+	}
 }
 
 

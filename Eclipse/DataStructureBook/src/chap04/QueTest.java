@@ -3,16 +3,21 @@ package chap04;
 public class QueTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Queue que = new Queue(5);
+		RingBufferQueue que1 = new RingBufferQueue(10);
 		
-		que.inQueue(5);
-		que.inQueue(4);
-		que.inQueue(3);
-		que.dumped();
+		que1.enque(1);
+		que1.enque(2);
+		que1.enque(3);
+		que1.enque(4);
+		que1.enque(5);
+		que1.enque(6);
+		que1.enque(7);
+		que1.enque(8);
+		que1.enque(9);
+		que1.enque(10);
 		
-		que.deQueue();
-		que.dumped();
+		int a = que1.search(6);
+		System.out.println(a);
 	}
 
 }

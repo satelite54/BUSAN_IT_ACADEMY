@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "67298155505",
+    "project_id": "firefly-sns-c4012",
+    "storage_bucket": "firefly-sns-c4012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67298155505:android:b796e76b29d4bedddb4250",
+        "android_client_info": {
+          "package_name": "com.satelite54.fireflysns_mvvmsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67298155505-t981ubilgm2me4g673j30d8frjbvbs2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.satelite54.fireflysns_mvvmsample",
+            "certificate_hash": "cc7e0d6cd116ae0bb2fcce59de52c30149a2d854"
+          }
+        },
+        {
+          "client_id": "67298155505-brtia6kim8rv474gon7vqkrfnbdise5f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDhXI63JdT8OcC3R6nVZJyWcPVQk9qH9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67298155505-brtia6kim8rv474gon7vqkrfnbdise5f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

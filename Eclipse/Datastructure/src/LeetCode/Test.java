@@ -11,6 +11,8 @@ import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
+
 import Util.CLog;
 import Util.CPrint;
 
@@ -18,8 +20,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] strAry = {"BACDE", "CBADF", "AECB", "BDA"};
-		skilltree("CBD", strAry);
+		int[] nAry1= {1,2,3,2,3};
+		Stockprice(nAry1);
 	}
 	public static int reversInteger (int x) {
 		// dwadwa
@@ -1633,6 +1635,200 @@ public class Test {
     	
     	return 1;
 	}
+    public static int[] functionDevelop(int[] progresses, int[] speeds) {
+    	
+    	List<Integer> list = new ArrayList<Integer>();
+    	Stack<Integer> stack = new Stack<>();
+
+    	for(int i = progresses.length - 1; i >= 0 ; i--) {
+    		stack.push(progresses[i]);
+    	}
+    	
+    	// 인덱스 값이 100넘을 때 까지 반목문 돌리고
+    	// 만약 100이 넘으면 앞에 것을 pop 하면서 speeds 시작 인덱스 idx 증가
+    	// pop 하고 반복문으로 뒤에 요소들이 연속으로 몇개나 100이 넘는지 count
+    	int idx = 0;
+
+    	while(stack.isEmpty() != true) { // 하루
+        	int popCnt = 0;
+    		for(int i = idx; i < speeds.length; i++) {
+        		stack.set(speeds.length - 1 - i, stack.get(speeds.length - 1 - i) + speeds[i]) ;
+    		}
+    		
+    		for(int j = 0; j < stack.size(); j++) {
+    			if(stack.peek() >= 100) {
+    				stack.pop();
+    				j--;
+    				popCnt++;
+    				idx++;
+    			} else {
+    				break;
+    			}
+    		}
+    		if(popCnt == 0)
+    			continue;
+    		list.add(popCnt);
+    	}
+    	
+    	int[] nAry = new int[list.size()];
+    	for(int i = 0; i < list.size(); i++) {
+    		nAry[i] = list.get(i);
+    	}
+    	
+    	return nAry;
+    }
+    
+    public static int[] Stockprice(int[] prices) {
+        int[] answer = new int[prices.length];
+        List<Integer> list = new ArrayList<Integer>();
+        int length = prices.length;
+
+        for(int i = 0; i < length; i++) {
+            int TimeCnt = 0;
+        	for(int j = i + 1; j < length; j++) {
+        		if(prices[i] > prices[j]) {
+        			TimeCnt++;
+        			break;
+        		}
+        		TimeCnt++;
+        	}
+        	list.add(TimeCnt);
+        }
+        
+        for(int i = 0; i < length; i++) {
+        	prices[i] = list.get(i);
+        }
+        return prices;
+    }
+    
+//    public static class Queue {// 연습문제 4 - Q4 큐를 구현해라
+//    	private int max; // 큐의 길이
+//    	private int num; // 현재 데이터 수
+//    	private int[] que; // 큐 본체
+//    	private int location; // 내가 요청한 문서가 몇번째에 있는지?
+//    	
+//    	public Queue(int[] nAry, int QueLength, int location) {
+//    		this.que = nAry;
+//    		this.max = QueLength;
+//    		this.location = location;
+//    	}
+//    	
+//    	public boolean inQueue(int n) {
+//    		if(num == max) {
+//    			return false;
+//    		}
+//    		location++;
+//    		que[num] = n;
+//    		num++;
+//    		return true;
+//    	}
+//    	
+//    	public int deQueue() {
+//    		if(num == 0) {
+//    			return -1;
+//    		}
+//    		location--;
+//    		int result = que[0];
+//    		for(int i = 1; i < que.length; i++) {
+//    			que[i - 1] = que[i];
+//    		}
+//    		// 이렇게 되면 복잡도는 O(n)이 된다.
+//    		// 링버퍼로 큐를 만들면 앞쪽으로 배열 요소를 옮기지 않아도 된다.
+//    		num--;
+//    		return result;
+//    	}
+//    	public void dumped() {
+//    		for(int i = 0; i < num; i++) {
+//    			System.out.print(que[i] + " ");			
+//    		}
+//    		System.out.println();
+//    	}
+//    	public int[] getAry() {
+//    		return que;
+//    	}
+//    	public int getlocation() {
+//    		return location;
+//    	}
+//    }
+    
+//    public static int printerMy(int[] priorities, int location) {
+//    	int len = priorities.length;
+//    	Queue que = new Queue(priorities, len, location);
+//    	
+//    	int result = 1;
+//    	List<Integer> list = new ArrayList<Integer>(); 
+//    	for(int i = 0; i < len; i++) {
+//        	boolean flag = false;
+//    		int temp = que.deQueue();
+//    		for(int j = 1; j < len; j++) {
+//        		if(priorities[j] > temp) {
+//        			que.inQueue(temp);
+//        			flag = true;
+//        			continue;
+//        		}
+//    		}
+//    	}
+//    	
+//    	return que.getlocation();
+//    }
+    
+    public static int printer(int[] priorities, int location) {
+        int answer = 0;
+        
+        Queue<Integer> q = new LinkedList<Integer>();
+        for(int i=0; i<priorities.length; i++){
+            q.offer(priorities[i]);
+        }
+        
+        while(!q.isEmpty()){
+        	// 가장 앞에 있는 순서의 우선 순위보다 더 큰 것 있는지 체크
+            boolean flag = false;
+            for(int i=1; i<q.size(); i++){
+            	if(q.peek() < (int)(q.toArray()[i])) {
+            		flag = true;
+            		break;
+            	}
+            }
+            
+            for(int i=0; i<q.size(); i++) {
+            	System.out.print(q.toArray()[i] + ",");
+            }
+            System.out.println();
+            
+            // priorities에 우선 순위가 더 큰 경우가 있는 경우
+            if(flag){
+                // 해당 위치의 값을 맨 뒤로 보냄
+                q.offer(q.poll());
+                
+                // poll을 했으므로 해당 위치의 값을 하나씩 앞으로 땡기는데
+                location--;
+                // location < 0 이면 location 값이 제일 뒤로 갔으므로 q.size()-1
+                if(location < 0){
+                    location = q.size()-1;
+                }
+            }
+            // q.peek()이 우선 순위 젤 크거나 같은 경우
+            else{
+            	// location이 0일 경우가 가장 앞까지 온 경우
+                if(location == 0){
+                    answer++;
+                    q.clear();
+                }
+                else{
+                    q.poll();
+                    answer++;
+                    // poll을 했으므로 해당 위치의 값을 하나씩 앞으로 땡기는데
+                    location--;
+                    // location < 0 이면 location 값이 제일 뒤로 갔으므로 q.size()-1
+                    if(location < 0){
+                        location = q.size()-1;
+                    }
+                }
+            }
+        }
+        
+        return answer;
+    }
 }
 
 

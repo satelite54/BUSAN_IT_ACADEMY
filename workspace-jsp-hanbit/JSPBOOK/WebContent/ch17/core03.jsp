@@ -6,7 +6,7 @@
 <title>JSTL</title>
 </head>
 <body>
-	<h3>±¸±¸´Ü</h3>
+	<h3>êµ¬êµ¬ë‹¨</h3>
 	<table>
 		<c:forEach var="i" begin="1" end="9">
 			<tr>

@@ -1,1 +1,1 @@
-Copyright © JSPBook
+Copyright ?JSPBook

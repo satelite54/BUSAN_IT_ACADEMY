@@ -3,8 +3,8 @@
 <head>
 <title>Implicit Objects</title>
 </head>
-<body>	   
-	<p>이 페이지는 5초마다 새로고침 됩니다.     
+<body>	혻 혻
+	<p>???섏씠吏??5珥덈쭏???덈줈怨좎묠 ?⑸땲?? 혻혻혻혻
 		<%
 			response.setIntHeader("Refresh", 5);
 		%>

@@ -3,7 +3,7 @@
 <head>
 <title>Exception</title>
 </head>
-<body>	   
+<body>	혻혻혻
 <%
 	try {
 		String num1 = request.getParameter("num1");

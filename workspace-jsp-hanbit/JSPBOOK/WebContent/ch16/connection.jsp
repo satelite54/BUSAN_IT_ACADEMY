@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.sql.*"%> 
+<%@ page import="java.sql.*"%>혻
 <html>
 <head>
 <title>Database SQL</title>
@@ -14,9 +14,9 @@
 
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
-			out.println("데이터베이스 연결이 성공되었습니다.");
+			out.println("?곗씠?곕쿋?댁뒪 ?곌껐???깃났?섏뿀?듬땲??");
 		} catch (SQLException ex) {
-			out.println("데이터베이스 연결이 실패되었습니다.<br>");
+			out.println("?곗씠?곕쿋?댁뒪 ?곌껐???ㅽ뙣?섏뿀?듬땲??<br>");
 			out.println("SQLException: " + ex.getMessage());
 		} finally {
 			if (conn != null)

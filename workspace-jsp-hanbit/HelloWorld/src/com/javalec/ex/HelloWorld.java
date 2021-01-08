@@ -27,14 +27,16 @@ public class HelloWorld extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
+    // HTML 클라이언트에서 WAS로 데이터 요청하는 방식은 두가지가 있다. get post 방식
+    // HTML 에서 get 방식으로 호출하면 Servlet에서는 doGet 메서드 호출
+    // HTML내 post 방식으로 호출하면 doPost 호출
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("HelloWorld!!");
+		//URL 값으로 정보가 전송되어 보안에 약함
+		System.out.println("doGet");
 		
-		response.setContentType("text/html");
+		response.setContentType("text/html; charset=euc-kr");
 		PrintWriter writer = response.getWriter(); // 웹브라우저에 출력하기 위한 스트림
-		
-		
 		
 		writer.println("<html>");
 		writer.println("<head>");
@@ -51,8 +53,7 @@ public class HelloWorld extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//header를 이용해 정보 전송되어 보안에 강함
+		System.out.println("doPost");
 	}
-
 }

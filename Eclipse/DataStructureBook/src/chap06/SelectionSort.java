@@ -5,7 +5,7 @@ import java.util.Random;
 import Array.CArray;
 
 public class SelectionSort {
-
+ // 단순 선택 정렬 : 가장 적은 요소 부터 선택해 알맞은 위치로 옮겨서 순서대로 정렬하는 알고리즘
 	static void selectionSort(int[] a, int n) {
 		for(int i = 0; i < n - 1; i++) {
 			int min = i; //아직 정렬되지 않은 부분의 인덱스

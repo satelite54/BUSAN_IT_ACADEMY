@@ -36,9 +36,12 @@ public class CArray {
 		}
 		return max;
 	}
-	public static int RandomInt(int nMax) { // 랜덤 정수 값 반환
+	public static int[] RandomInt(int[] nAry, int nMax) { // 랜덤 정수 값 반환
 		Random rand = new Random();
-		return rand.nextInt(nMax);
+		for(int i = 0; i < nAry.length; i++) {
+			nAry[i] = rand.nextInt(nMax);
+		}
+		return nAry;
 	}
 	
 	public static void nAryReversesort(int[] nAry) {

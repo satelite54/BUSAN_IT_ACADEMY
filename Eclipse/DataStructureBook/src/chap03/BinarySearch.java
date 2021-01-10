@@ -9,10 +9,7 @@ public class BinarySearch {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] a = new int[100];
-		CArray Ary = new CArray();
-		for(int i = 0; i < 100; i++) {
-			a[i] = Ary.RandomInt(100);	
-		}
+		CArray.RandomInt(a, a.length);
 		int result1 = 0;
 		int result2 = 0;
 		result1 = BnSearch(a, 100, a[3]);

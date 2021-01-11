@@ -43,7 +43,6 @@ public class Servlet extends HttpServlet {
 		writer.println("</body</html>");
 		
 		writer.close();
-		
 	}
 
 	/**

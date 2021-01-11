@@ -48,12 +48,12 @@
 	          <input type="password" class="form-control mb-3" name="userPassword" placeholder="패스워드" maxlength="20" required>
 	          <input type="text" class="form-control mb-3" placeholder="이름" name="userName" maxlength="20">
               <div class="text-center">
-	            <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-				  <label class="btn btn-success active">
-				    <input type="radio" name="userGender" value="남성" autocomplete="off" checked> 남성
+				<div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+				  <label class="btn btn-secondary active">
+				    <input type="radio" name="userGender" id="option1" autocomplete="off" checked> 남성
 				  </label>
-				  <label class="btn btn-success">
-				    <input type="radio" name="userGender" value="여성" autocomplete="off"> 여성
+				  <label class="btn btn-secondary">
+				    <input type="radio" name="userGender" id="option2" autocomplete="off"> 여성
 				  </label>
 				</div>
 	          </div>

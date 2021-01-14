@@ -11,6 +11,23 @@ public class Stack4 {
 //		sc.nextLine();
 		// B´Â pop
 		Stack<Character> stack = new Stack<>();
+		Stack<Integer> stack1 = new Stack<Integer>();
+		stack.push(' ');
+		stack.pop();
+		
+		stack1.push(1);
+		int na = stack1.pop();
+		
+		1 2 3 4 5
+		
+		5 4 3 2 1
+		
+		
+		5
+		4
+		3
+		2
+		1
 		
 		for(int i = 0; i < str.length(); i++) {
 			stack.push(str.charAt(i));

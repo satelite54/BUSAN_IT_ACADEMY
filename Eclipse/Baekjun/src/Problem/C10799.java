@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class C10799 {
@@ -24,19 +25,41 @@ public class C10799 {
 		Stack<Character> stack = new Stack<>();
 		int result = 0;
 		char chr = ' ';	//이전 괄호 데이터 저장
+		
 		for(int i = 0; i < str.length(); i++) {
 			char tempchr = str.charAt(i);
 			if(tempchr == '(') {
 				stack.push(tempchr);
-			} 
+			}
 			if(chr == '(' && tempchr == ')') { // 레이져 쏘기
 				stack.pop();
-				result += stack.size() * 2; //stack.size는 쇠막대기 갯수
-			} else if(tempchr == ')') {
-				stack.pop();
+				result += stack.size(); //stack.size는 쇠막대기 갯수
 			}
 			chr = tempchr;
 		}
 		System.out.println(result);
+	}
+	
+	public void NotMySolution() {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.next();
+        Stack<Integer> stack = new Stack<>();
+        int count = 0;
+        
+        for(int i=0; i<s.length(); i++) {
+            if(s.substring(i,i+1).equals("("))
+                stack.push(i);
+            else {
+                if(stack.peek() == i-1) {
+                    stack.pop();
+                    count+=stack.size();
+                }
+                else {
+                    stack.pop();
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
 	}
 }

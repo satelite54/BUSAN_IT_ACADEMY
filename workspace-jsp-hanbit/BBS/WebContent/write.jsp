@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+<% 
+	//세션에 userID를 얻어와서 현재 로그인 상태인지 확인한다.
+	String userID = null;
+	if(session.getAttribute("userID") != null){ 
+		//널값이 아니라면 아이디를 가져온다.
+		userID = (String)session.getAttribute("userID");
+	}
+%>
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="main.jsp">JSP 게시판</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,9 +29,13 @@
         <a class="nav-link" href="main.jsp">메인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="bbs.jsp">게시판</a>
+        <a class="nav-link active" href="bbs.jsp">게시판</a>
       </li>
     </ul>
+    <%
+    	//로그인 안된상태
+    	if(userID == null) {
+    %>
     <ul class="navbar-nav ml-auto">
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,37 +43,43 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="Dropdown">
           <a class="dropdown-item" href="login.jsp">로그인</a>
-          <a class="dropdown-item active" href="join.jsp">회원가입</a>         
+          <a class="dropdown-item" href="join.jsp">회원가입</a>         
         </div>
       </li>
     </ul>
+    <%
+    	} else { //로그인 된상태
+    %>
+     <ul class="navbar-nav ml-auto">
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          	회원관리
+        </a>
+        <div class="dropdown-menu" aria-labelledby="Dropdown">
+          <a class="dropdown-item" href="logoutAction.jsp">로그아웃</a>       
+        </div>
+      </li>
+    </ul>   
+    <%
+    	}
+    %>
   </div>
 </nav>
-	<div class="container">
-	  <div class="row">
-	    <div class="col-lg-5 col-md-7 mx-auto">
-	      <div class="bg-light p-5 mt-5">
-	        <form action="joinAction.jsp" method="post">
-	          <h3 class="text-center mb-3">회원가입 화면</h3>
-	          <input type="text" class="form-control mb-3" name="userID" placeholder="아이디" maxlength="20" required>
-	          <input type="password" class="form-control mb-3" name="userPassword" placeholder="패스워드" maxlength="20" required>
-	          <input type="text" class="form-control mb-3" name="userName" placeholder="이름" maxlength="20" required>
-	          
-	          <div class="text-center">
-	          	<div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-				  <label class="btn btn-success active">
-				    <input type="radio" name="userGender" value="남성" autocomplete="off" checked>남성
-				  </label>
-				  <label class="btn btn-success">
-				    <input type="radio" name="userGender" value="여성" autocomplete="off">여성
-				  </label>
+	<div class="container mt-3">
+	  <div class="card">
+	  	<div class="card-header">
+	  		글쓰기 양식
+	  	</div>
+	  	<div class="card-body">
+	  		<form action="writeAction.jsp" method="post">
+	  			<input type="text" class="form-control mb-3" name="bbsTitle" placeholder="글제목" maxlength="50" required>
+	  			<textarea class="form-control mb-3" name="bbsContent" style="height: 350px" placeholder="글내용" maxlength="2048" required></textarea>
+	  			<div class="row">
+					<input type="submit" value="글쓰기" class="btn btn-primary ml-auto mr-3">
 				</div>
-			  </div>
-			  <input type="email" class="form-control mb-3" name="userEmail" placeholder="이메일" maxlength="50" required>	
-	          <input type="submit" class="btn btn-primary form-control mb-3" value="가입하기">         
-	        </form>
-	      </div>
-	    </div>
+	  		</form>
+	  	</div>
+		
 	  </div>
 	</div>
 

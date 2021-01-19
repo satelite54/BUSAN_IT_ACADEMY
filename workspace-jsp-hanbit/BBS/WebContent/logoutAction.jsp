@@ -7,9 +7,11 @@
 <title>JSP 게시판 웹사이트</title>
 </head>
 <body>
+	<%
+		session.invalidate(); //모든 세션을 삭제한다.	
+	%>
 	<script>
-		//기본 페이지 이동 => main으로
-		location.href = 'main.jsp';
+		location.href = 'main.jsp'; //메인 페이지로
 	</script>
 </body>
 </html>

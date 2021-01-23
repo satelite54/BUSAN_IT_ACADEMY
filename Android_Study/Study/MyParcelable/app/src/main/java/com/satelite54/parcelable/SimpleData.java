@@ -12,11 +12,11 @@ public class SimpleData implements Parcelable {
         this.message = message;
     }
 
-    public SimpleData(Parcel src) {
+    public SimpleData(Parcel src) { //Pracel 객체에서 읽기
         code = src.readInt();
         message = src.readString();
     }
-
+    // Parcelable 내부인터페이스 Creator 구현 생성자 호출
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public  SimpleData createFromParcel(Parcel in) {
             return new SimpleData(in);

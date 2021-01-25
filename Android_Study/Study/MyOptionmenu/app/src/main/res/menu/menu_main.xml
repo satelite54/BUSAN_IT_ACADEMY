@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--액션바에 옵션 메뉴 추가하기-->
+    <item android:id="@+id/menu_refresh"
+        android:title="새로고침"
+        android:icon="@drawable/ic_launcher_foreground"
+        app:showAsAction="always"/>
+    <item android:id="@+id/menu_search"
+        android:title="검색"
+        android:icon="@drawable/abc_vector_test"
+        app:showAsAction="always"/>
+    <item android:id="@+id/menu_settings"
+        android:title="설정"
+        android:icon="@drawable/ic_launcher_background"
+        app:showAsAction="always"/>
+</menu>

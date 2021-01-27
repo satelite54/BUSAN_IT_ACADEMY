@@ -13,7 +13,7 @@ public class MemberMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 
-	//·Î±×ÀÎ - ¼º°ø : true, ½ÇÆĞ : false
+	//ë¡œê·¸ì¸ - ì„±ê³µ : true, ì‹¤íŒ¨ : false
 	public boolean loginMember(String id, String pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -36,7 +36,7 @@ public class MemberMgr {
 		return flag;
 	}
 	
-	//id Áßº¹È®ÀÎ - Áßº¹ : true
+	//id ì¤‘ë³µí™•ì¸ - ì¤‘ë³µ : true
 	public boolean checkId(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -58,7 +58,7 @@ public class MemberMgr {
 		return flag;
 	}
 	
-	//¿ìÆí¹øÈ£ °Ë»ö
+	//ìš°í¸ë²ˆí˜¸ ê²€ìƒ‰
 	public Vector<ZipcodeBean> searchZipcode(String area3){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -68,7 +68,7 @@ public class MemberMgr {
 		try {
 			con = pool.getConnection();
 			sql = "select * from tblZipcode where area3 like ?";
-			//? -> '%°­³²´ë·Î%'
+			//? -> '%ê°•ë‚¨ëŒ€ë¡œ%'
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+area3+"%");
 			rs = pstmt.executeQuery();
@@ -88,7 +88,7 @@ public class MemberMgr {
 		return vlist;
 	}
 	
-	//È¸¿ø °¡ÀÔ
+	//íšŒì› ê°€ì…
 	public boolean insertMember(MemberBean bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -109,8 +109,8 @@ public class MemberMgr {
 			pstmt.setString(7, bean.getZipcode());
 			pstmt.setString(8, bean.getAddress());
 			/////////////////////////////////
-			String hobby[] = bean.getHobby();//ÀÎÅÍ³İ °ÔÀÓ ¿îµ¿
-			String lists[] = {"ÀÎÅÍ³İ", "¿©Çà", "°ÔÀÓ", "¿µÈ­", "¿îµ¿"};
+			String hobby[] = bean.getHobby();//ì¸í„°ë„· ê²Œì„ ìš´ë™
+			String lists[] = {"ì¸í„°ë„·", "ì—¬í–‰", "ê²Œì„", "ì˜í™”", "ìš´ë™"};
 			char hb[] = {'0','0','0','0','0'};
 			for (int i = 0; i < hobby.length; i++) { //3
 				for (int j = 0; j < lists.length; j++) {//5
@@ -133,7 +133,7 @@ public class MemberMgr {
 		return flag;
 	}
 	
-	//È¸¿ø Á¤º¸ °¡Á®¿À±â
+	//íšŒì› ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	public MemberBean getMember(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -157,7 +157,7 @@ public class MemberMgr {
 				bean.setAddress(rs.getString("address"));
 				////////////////////////////////////
 				String hobby = rs.getString("hobby");//01010
-				//DB¿¡ ¹®ÀÚ·Î ÀúÀåµÈ data¸¦ ¹è¿­·Î º¯È¯ÇÏ¿© ºóÁî¿¡ ÀúÀå
+				//DBì— ë¬¸ìë¡œ ì €ì¥ëœ dataë¥¼ ë°°ì—´ë¡œ ë³€í™˜í•˜ì—¬ ë¹ˆì¦ˆì— ì €ì¥
 				String hobbys[] = new String[hobby.length()];
 				//01010 -> {"0","1","0","1","0"}
 				for (int i = 0; i < hobbys.length; i++) {
@@ -175,7 +175,7 @@ public class MemberMgr {
 		return bean;
 	}
 	
-	//È¸¿ø ¼öÁ¤
+	//íšŒì› ìˆ˜ì •
 	public boolean updateMember(MemberBean bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -195,8 +195,8 @@ public class MemberMgr {
 			pstmt.setString(6, bean.getZipcode());
 			pstmt.setString(7, bean.getAddress());
 			/////////////////////////////////
-			String hobby[] = bean.getHobby();//ÀÎÅÍ³İ °ÔÀÓ ¿îµ¿
-			String lists[] = {"ÀÎÅÍ³İ", "¿©Çà", "°ÔÀÓ", "¿µÈ­", "¿îµ¿"};
+			String hobby[] = bean.getHobby();//ì¸í„°ë„· ê²Œì„ ìš´ë™
+			String lists[] = {"ì¸í„°ë„·", "ì—¬í–‰", "ê²Œì„", "ì˜í™”", "ìš´ë™"};
 			char hb[] = {'0','0','0','0','0'};
 			for (int i = 0; i < hobby.length; i++) { //3
 				for (int j = 0; j < lists.length; j++) {//5
@@ -221,6 +221,22 @@ public class MemberMgr {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

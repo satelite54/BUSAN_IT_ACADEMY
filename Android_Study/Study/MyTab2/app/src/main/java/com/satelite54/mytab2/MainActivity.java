@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit(); // 처음 띄워주는 화면은 fragment1 페이지
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
+                switch (menuItem.getItemId()) { // 바텀네비게이션에서 Id 값을 받으면 해당 프레그먼트 출력
                     case R.id.tab1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
                         return true;

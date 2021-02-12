@@ -22,4 +22,8 @@
  	<param-name>path</param-name>
  	<param-value>C:\src\workspace</param-value>
   </context-param>
+  
+  <listener>
+   <listener-class>../seoul_wiz/org.satelite54._8.ContextListener</listener-class>
+  </listener>
 </web-app>

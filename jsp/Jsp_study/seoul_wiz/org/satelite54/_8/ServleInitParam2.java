@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServleInitParam2
  */
-@WebServlet(urlPatterns = {"/InitP"}, initParams = {@WebInitParam(name = "id", value = "aaaaa"), @WebInitParam(name = "pw", value = "0000")})
+@WebServlet(urlPatterns = {"/seoul_wiz/org.satelite54._8.ServleInitParam2.java"}, initParams = {@WebInitParam(name = "id", value = "aaaaa"), @WebInitParam(name = "pw", value = "0000")})
 public class ServleInitParam2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

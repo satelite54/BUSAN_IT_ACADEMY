@@ -15,7 +15,6 @@ public class crawling {
 		String url1 = "http://www.thevapor.co.kr";
 		Document doc1 = Jsoup.connect(url1).get();
 		List<String> el1 = doc1.getElementsByClass("xans-record-").select("a").eachAttr("href");
-		System.out.println(el1);
 		
 		//카테고리 5개는 일단 제외(로그인해야 크롤링 가능)
 		int categorySize = el1.size();
@@ -30,7 +29,6 @@ public class crawling {
 		String[] strAry = new String[el1.size()];
 		for(int i = 0; i < el1.size(); i++) {
 			strAry[i] = url1 + el1.get(i);
-			System.out.println(strAry[i]);
 		};
 		//카테고리마다 상품 목록 크롤링
 		int n = strAry.length;

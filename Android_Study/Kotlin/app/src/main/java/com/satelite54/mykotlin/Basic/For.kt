@@ -1,4 +1,4 @@
-package com.satelite54.mykotlin
+package com.satelite54.mykotlin.Basic
 
 fun main() {
 

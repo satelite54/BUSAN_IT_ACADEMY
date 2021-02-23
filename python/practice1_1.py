@@ -1,0 +1,10 @@
+a = int(input("첫번 째 수를 입력해주세용 : "))
+b = int(input("두번 쨰 수도 입력해주세용 : "))
+c = []
+c.append(a)
+c.append(b)
+print(sum(c))
+print(a - b)
+print(a + b)
+print(min(c))
+print(max(c))

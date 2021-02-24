@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Component // 런타임에 IOC 컨테이너에 Bean을 주입
-// Componet 어노테이션의 경우 디폴트 생성자를 찾는다. 생성자 있을 경우에 빈 주입 불가.
+// Componet 어노테이션의 경우 디폴트 기본 생성자를 찾는다. 기본 생성자가 없을시 빈 주입 불가.
 // @Configuration ,@Bean을 이용해 Bean을 주입하는 방법도 있다.
 public class TransportationWalk {
 	String name;

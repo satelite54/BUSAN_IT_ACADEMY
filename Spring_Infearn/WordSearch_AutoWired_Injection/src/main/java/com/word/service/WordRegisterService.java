@@ -13,7 +13,8 @@ public class WordRegisterService {
 //	@Qualifier("usedDao")
 	// @Qualifier 스프링 컨테이너 객체에서 Qualifier태그에 지정된 value값을 참조해 객체를 찾는다.
 	//@Qualifier의 id 속성 값과 변수명이 같은때는 Qualifier를 생략 가능하다. 좋은 방법이 아니다. 여러개 객체가 생성되면 가발자가 혼동할 수도 있기 때문에
-	//@Inject의 경우 requird 속성이 없다 그거 말고는 @Autowired랑 똑같음
+	//@Inject의 경우 requird 속성이 없다 그거 말고는 @Autowired랑 똑같음.
+	//@Inject는 밑에 @Named(value="wordDao1")이런식으로 다수의 객체중에서 주입할 잭체를 선택할 수 있음.
 	private WordDao wordDao;
 	
 	public WordRegisterService() {}

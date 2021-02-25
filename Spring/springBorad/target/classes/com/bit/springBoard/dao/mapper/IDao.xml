@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.springBoard.dao.IDao">
+	<select id="listBoard" resultType="com.bit.springBoard.dto.BoardDTO">
+		select * from tblBoard order by id desc
+	</select>
+	
+	<select id="viewBoard" resultType="com.bit.springBoard.dto.BoardDTO">
+		select * from tblBOard where id = #{param1}
+	</select>
+	
+	<insert id="writeBoard">
+		insert into tblBoard(id, Name, title, content, hit)values
+		(tblBoardSeq.nextval, #{param1},#{param2},#{param3}, 0)
+	</insert>
+	<update id="modifyBoard">
+		update tblBoard set name=#{param1}, title=#{param2}, content=#{param3} where id = #{param4}
+		
+	</update>
+	<delete id="deleteBoard">
+	</delete>
+	<update id="upHitBoard">
+		update tblBoard set hit = hit + 1
+		where id = #{param1}
+	</update>
+</mapper>
+
+
+
+
+
+

@@ -51,6 +51,7 @@ public class UserController {
 	public String userLogin(UserVO user, 
 			HttpServletRequest req) throws Exception{
 		int cnt = userService.login(user);
+		System.out.println("login : cnt = " + String.valueOf(cnt));
 		if(cnt==1) {
 			HttpSession session = req.getSession();
 			user = userService.select(user.getUserID());

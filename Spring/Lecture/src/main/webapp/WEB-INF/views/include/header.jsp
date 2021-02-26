@@ -52,7 +52,16 @@
 
 							<!-- Social Button -->
 							<div class="top-social-info">
-								<a href="categoryWriteForm">강의만들기</a><a href="userJoinForm">회원가입</a> <a href="userLoginForm">로그인</a>
+								<a href="categoryWriteForm">강의만들기</a>
+								<a href="userJoinForm">회원가입</a>
+								<c:choose>
+									<c:when test="${sessionScope.userID!=null}">
+										<a href="userLogout">로그아웃(${sessionScope.userID})</a>										
+									</c:when>
+									<c:otherwise>
+										<a href="userLoginForm">로그인</a>									
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>

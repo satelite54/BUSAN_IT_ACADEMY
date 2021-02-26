@@ -21,16 +21,18 @@
 
 								<!-- Contact Form Area -->
 								<div class="contact-form-area">
-									<form action="#" method="post">
+									<form action="mailSend" method="post">
 										<div class="row">
 											<div class="col-12 col-lg-6">
 												<div class="form-group">
-													<input type="text" class="form-control" id="contact-name" placeholder="Name">
+													<input type="text" class="form-control" name="userName" 
+													value="${sessionScope.userName}" placeholder="Name">
 												</div>
 											</div>
 											<div class="col-12 col-lg-6">
 												<div class="form-group">
-													<input type="email" class="form-control" id="contact-email" placeholder="Email">
+													<input type="email" class="form-control" name="userEmail"
+													value="${sessionScope.userEmail}" placeholder="Email">
 												</div>
 											</div>
 											<div class="col-12">
@@ -42,6 +44,7 @@
 												<button type="submit" class="btn foode-btn">Send</button>
 											</div>
 										</div>
+										<input type="hidden" name="adminEmail" value="taehune94@gmail.com">
 									</form>
 								</div>
 							</div>

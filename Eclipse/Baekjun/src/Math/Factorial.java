@@ -15,9 +15,9 @@ public class Factorial {
 	}
 
 	public static int factorialfiveCnt(int n) {
-		
 		for(int i = 1; i <= n; i++) {
 			
 		}
+		return n;
 	}
 }

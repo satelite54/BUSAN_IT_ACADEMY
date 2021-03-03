@@ -34,7 +34,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/mailSend", method = RequestMethod.POST)
 	public String mailSend(@RequestParam("userName") String name,
-			@RequestParam("userEmail") String fromEmail,
+			@RequestParam("userEmasssil") String fromEmail,
 			@RequestParam("message") String text,
 			@RequestParam("adminEmail") String toEmail,
 			Model model) throws Exception {

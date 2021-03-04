@@ -1,12 +1,10 @@
-package com.bs.lec17.member.service;
+package com.satelite54.myServiceDao.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import com.bs.lec17.member.Member;
-import com.bs.lec17.member.dao.MemberDao;
+import com.satelite54.myServiceDao.dao.MemberDao;
+import com.satelite54.myServiceDao.member.Member;
 
 //@Service
 //@Service("memService")

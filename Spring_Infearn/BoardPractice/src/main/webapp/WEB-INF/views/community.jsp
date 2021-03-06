@@ -8,7 +8,6 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ page import="com.satelite54.dto.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -34,13 +33,13 @@
 				</tr>
 			</thead>
 			<tbody class="border">
-				<c:forEach var="bbs" items="${BoardList}" begin="${requestScope.page.blockStartNum}" end="${requestScope.page.blockLastNum}">
+				<c:forEach var="BoardDTO" items="${BoardList}" begin="${requestScope.page.blockStartNum}" end="${requestScope.page.blockLastNum}">
 					<tr>
-						<td>${bbs.BNum}</td>
-						<td>${bbs.BTitle}</td>
-						<td>${bbs.id}</td>
-						<td>${bbs.BDate}</td>
-						<td>${bbs.views}</td>
+						<td>${BoardDTO.BNum}</td>
+						<td>${BoardDTO.BTitle}</td>
+						<td>${BoardDTO.id}</td>
+						<td>${BoardDTO.BDate}</td>
+						<td>${BoardDTO.views}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

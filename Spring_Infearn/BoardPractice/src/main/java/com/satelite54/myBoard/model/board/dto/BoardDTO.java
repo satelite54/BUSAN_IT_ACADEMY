@@ -1,4 +1,4 @@
-package com.satelite54.dto;
+package com.satelite54.myBoard.model.board.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +20,6 @@ public class BoardDTO {
 		return "Board [BNum=" + BNum + ", BTitle=" + BTitle + ", BContent=" + BContent + ", BDate=" + BDate + ", id="
 				+ id + ", authority=" + authority + ", views=" + views + "]";
 	}
+
 }
 

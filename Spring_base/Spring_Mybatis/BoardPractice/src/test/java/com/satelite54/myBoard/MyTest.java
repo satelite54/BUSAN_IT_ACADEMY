@@ -21,6 +21,7 @@ public class MyTest {
 	@Inject 
 	private SqlSessionFactory sqlFactory;
 	
+	@Test
 	public void test() throws Exception {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println(conn);

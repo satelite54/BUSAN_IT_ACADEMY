@@ -13,6 +13,6 @@
 		BDate,
 		id,
 		authority,
-		views
+		views FROM board
 	</select>
 </mapper>

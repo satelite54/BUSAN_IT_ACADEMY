@@ -14,10 +14,10 @@ import com.satelite54.myBoard.model.board.dto.BoardDTO;
 @Controller
 public class BoardController {
 	
-	@RequestMapping(value = "BoardList", method = RequestMethod.POST)
+	@RequestMapping(value = "/")
 	private String goBoardWithUserList(Model model) {
 		ClassPathXmlApplicationContext factory
-		= new ClassPathXmlApplicationContext("root-context.xml");
+		= new ClassPathXmlApplicationContext("../spring/root-context.xml");
 		
 		BoardDAO boardDao = (BoardDAO) factory.getBean("boardDAO");
 		List<BoardDTO> boardList = boardDao.getBoardList();

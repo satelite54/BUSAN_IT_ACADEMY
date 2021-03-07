@@ -3,7 +3,16 @@
 <mapper namespace="com.satelite54.myBoard.model">
 	
 	<select id="getTime" resultType="java.sql.Date">
-		SELECT SYSDATE FROM DUAL
+		SELECT sysdate FROM dual
 	</select>
-
+	
+	<select id="getBoardList" resultType="com.satelite54.myBoard.model.board.dto.BoardDTO">
+		SELECT BNum,
+		BTitle,
+		BContent,
+		BDate,
+		id,
+		authority,
+		views
+	</select>
 </mapper>

@@ -33,7 +33,7 @@
 				</tr>
 			</thead>
 			<tbody class="border">
-				<c:forEach var="BoardDTO" items="${BoardList}" begin="${requestScope.page.blockStartNum}" end="${requestScope.page.blockLastNum}">
+				<c:forEach var="BoardDTO" items="${BoardList}">
 					<tr>
 						<td>${BoardDTO.BNum}</td>
 						<td>${BoardDTO.BTitle}</td>

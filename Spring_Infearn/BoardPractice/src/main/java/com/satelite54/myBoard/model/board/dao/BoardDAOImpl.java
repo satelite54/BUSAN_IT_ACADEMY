@@ -12,7 +12,7 @@ import com.satelite54.myBoard.model.board.dto.BoardDTO;
 
 import lombok.Setter;
 
-@Repository
+
 @Setter
 public class BoardDAOImpl implements BoardDAO {
 	@Inject

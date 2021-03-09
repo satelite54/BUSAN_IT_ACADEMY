@@ -13,15 +13,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <title>JASET VAPE</title>
 
 
 </head>
 <body>
 
-<script type="text/javascript"></script>
-	<div class="container">
+	<div class="container" style="padding: 10dp">
 		<table class="table border-dark rounded">
 			<thead class="thead-dark">
 				<tr>
@@ -68,7 +67,8 @@
 	</div>
 	<script
 		type="text/javascript">function checkForm1() {if (${id==null}) {alert("로그인 해주세요.");return false;}location.href = "communityWrite.do?id=${id}"}</script>
-	<script src="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"></script>
-	<script src="<c:url value="/resources/js/bootstrap.bundle.min.js" />"></script>
+	<script src="resources/js/jquery-3.5.1.min.js"></script>
+	<script src="resources/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/css/bootstrap.min.css"></script>
 </body>
 </html>

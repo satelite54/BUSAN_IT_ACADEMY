@@ -68,7 +68,7 @@
 	</div>
 	<script
 		type="text/javascript">function checkForm1() {if (${id==null}) {alert("로그인 해주세요.");return false;}location.href = "communityWrite.do?id=${id}"}</script>
-	<script src="css/bootstrap.min.css"></script>
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"></script>
+	<script src="<c:url value="/resources/js/bootstrap.bundle.min.js" />"></script>
 </body>
 </html>

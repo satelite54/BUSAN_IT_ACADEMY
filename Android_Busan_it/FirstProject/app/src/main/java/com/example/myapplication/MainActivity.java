@@ -38,73 +38,67 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView3);
 
         button1.setOnClickListener(v -> {
-            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
-                makeToast("EditBox 안에 값 입력 안했다!");
-                return;
-            }
-            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), '+'));
+            ButtonCall(button1, '+');
         });
         button2.setOnClickListener(v -> {
-            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
-                makeToast("EditBox 안에 값 입력 안했다!");
-                return;
-            }
-            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), '-'));
+            ButtonCall(button2, '-');
         });
         button3.setOnClickListener(v -> {
-            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
-                makeToast("EditBox 안에 값 입력 안했다!");
-                return;
-            }
-            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), '*'));
+            ButtonCall(button3, '*');
         });
         button4.setOnClickListener(v -> {
-            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
-                makeToast("EditBox 안에 값 입력 안했다!");
-                return;
-            }
-            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), '/'));
+            ButtonCall(button4, '/');
         });
         button5.setOnClickListener(v -> {
-            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
-                makeToast("EditBox 안에 값 입력 안했다!");
-                return;
-            }
-            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), '%'));
+            ButtonCall(button5, '%');
         });
     }
 
-        private void makeToast(String str) {
-            Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-        }
+    private void makeToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+    }
 
-        private String calculate(String a, String b, char c) {
-            int nTemp = 0;
+    private String calculate(String a, String b, char c) {
+        long nTemp = 0;
+        try {
             switch (c) {
                 case '+': {
-                    nTemp = Integer.parseInt(a) + Integer.parseInt(b);
+                    nTemp = Long.parseLong(a) + Long.parseLong(b);
                     break;
                 }
                 case '-': {
-                    nTemp = Integer.parseInt(a) - Integer.parseInt(b);
+                    nTemp = Long.parseLong(a) - Long.parseLong(b);
                     break;
                 }
                 case '*': {
-                    nTemp = Integer.parseInt(a) * Integer.parseInt(b);
+                    nTemp = Long.parseLong(a) * Long.parseLong(b);
                     break;
                 }
                 case '/': {
-                    nTemp = Integer.parseInt(a) / Integer.parseInt(b);
+                    nTemp = Long.parseLong(a) / Long.parseLong(b);
                     break;
                 }
                 case '%': {
-                    nTemp = Integer.parseInt(a) % Integer.parseInt(b);
+                    nTemp = Long.parseLong(a) % Long.parseLong(b);
                     break;
                 }
                 default: {
                     break;
                 }
             }
-            return String.valueOf(nTemp);
+        }catch (Exception e) {
+            e.printStackTrace();
         }
+        return String.valueOf(nTemp);
     }
+
+    private void ButtonCall(Button btn, char c) {
+        btn.setOnClickListener(v -> {
+            if(editText1.getText().toString().equals("") || editText2.getText().toString().equals("")) {
+                makeToast("EditBox 안에 값 입력 안했다!");
+                return;
+            }
+            textView.setText("계산 결과: " + calculate(editText1.getText().toString(), editText2.getText().toString(), c));
+        });
+    }
+}

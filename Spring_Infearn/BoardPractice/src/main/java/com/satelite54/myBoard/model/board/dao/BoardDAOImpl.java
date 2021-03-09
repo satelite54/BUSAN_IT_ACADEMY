@@ -1,7 +1,9 @@
 package com.satelite54.myBoard.model.board.dao;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -26,7 +28,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	@Override
 	public  List<BoardDTO> getBoardList() {
-		List<BoardDTO> userList = sqlSession.selectList("getBoardList");
+		List<BoardDTO> userList = sqlSession.selectList("getAllBoardList");
 		return userList;
+	}
+	@Override
+	public List<BoardDTO> getBoardPageList(int pageNum, String Search) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("pageNum", pageNum);
+		paramMap.put("Search", Search);
+		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList");
+		return null;
 	}
 }

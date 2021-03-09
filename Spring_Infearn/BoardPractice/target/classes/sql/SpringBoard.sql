@@ -1029,3 +1029,12 @@ INSERT INTO Board (BTitle, BContent, BDate, ID, Authority, Views) VALUES ('BTitl
 INSERT INTO Board (BTitle, BContent, BDate, ID, Authority, Views) VALUES ('BTitle 0998', 'BContent 0998', sysdate, 'ID 0998', 0998, 0998);
 INSERT INTO Board (BTitle, BContent, BDate, ID, Authority, Views) VALUES ('BTitle 0999', 'BContent 0999', sysdate, 'ID 0999', 0999, 0999);
 INSERT INTO Board (BTitle, BContent, BDate, ID, Authority, Views) VALUES ('BTitle 1000', 'BContent 1000', sysdate, 'ID 1000', 1000, 1000);
+
+SELECT *
+    FROM (
+        SELECT *
+        FROM board
+        WHERE bTitle LIKE '%BTitle%'
+        ORDER BY BNum DESC
+        )
+    WHERE ROWNUM <= 3;

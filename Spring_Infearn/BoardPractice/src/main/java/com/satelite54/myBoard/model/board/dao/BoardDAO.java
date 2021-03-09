@@ -8,4 +8,5 @@ import com.satelite54.myBoard.model.board.dto.BoardDTO;
 public interface BoardDAO {
 	public Date test();
 	public List<BoardDTO> getBoardList();
+	public List<BoardDTO> getBoardPageList(int pageNum, String Search);
 }

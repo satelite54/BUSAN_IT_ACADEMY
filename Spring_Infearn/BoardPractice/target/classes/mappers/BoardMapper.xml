@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.satelite54.myBoard.model">
-	
+
 	<select id="getTime" resultType="java.sql.Date">
 		SELECT sysdate FROM dual
 	</select>
-	
-	<select id="getBoardList" resultType="com.satelite54.myBoard.model.board.dto.BoardDTO">
-		SELECT BNum,
-		BTitle,
-		BContent,
-		BDate,
-		id,
-		authority,
-		views FROM board
+
+	<select id="getAllBoardList" resultType="com.satelite54.myBoard.model.board.dto.BoardDTO">
+		SELECT 
+			BNum,
+			BTitle,
+			BContent,
+			BDate,
+			id,
+			authority,
+			views
+		FROM board
+	</select>
+
+	<select id="getBoardPageList" resultType="com.satelite54.myBoard.model.board.dto.BoardDTO">
+		SELECT *
+		FROM (
+			SELECT *
+			FROM board
+			WHERE bTitle LIKE '%#{Search}%'
+			ORDER BY BNum DESC
+		)
+		<![CDATA[WHERE ROWNUM <= #{pageNum * 10}]]>
 	</select>
 </mapper>

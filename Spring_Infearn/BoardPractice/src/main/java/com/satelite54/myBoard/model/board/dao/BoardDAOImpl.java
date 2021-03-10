@@ -16,7 +16,7 @@ import lombok.Setter;
 
 
 @Setter
-public class BoardDAOImpl implements BoardDAO {
+public class BoardDAOImpl implements IBoardDAO {
 	@Inject
 	private SqlSessionTemplate sqlSession;
 	
@@ -36,7 +36,7 @@ public class BoardDAOImpl implements BoardDAO {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("pageNum", pageNum);
 		paramMap.put("Search", Search);
-		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList");
-		return null;
+		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList", paramMap);
+		return userList;
 	}
 }

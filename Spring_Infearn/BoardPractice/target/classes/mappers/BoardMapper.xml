@@ -19,13 +19,14 @@
 	</select>
 
 	<select id="getBoardPageList" resultType="com.satelite54.myBoard.model.board.dto.BoardDTO">
+		<![CDATA[
 		SELECT *
 		FROM (
 			SELECT *
 			FROM board
-			WHERE bTitle LIKE '%#{Search}%'
+			WHERE bTitle LIKE '%#{Search,jdbcType=VARCHAR}%'
 			ORDER BY BNum DESC
-		)
-		<![CDATA[WHERE ROWNUM <= #{pageNum * 10}]]>
+		) WHERE ROWNUM <= #{pageNum,jdbcType=NUMERIC}
+		]]>
 	</select>
 </mapper>

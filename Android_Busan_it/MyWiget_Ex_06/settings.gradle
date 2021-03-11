@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "MyWiget_Ex_06"

@@ -36,6 +36,7 @@ public class BoardDAOImpl implements IBoardDAO {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("pageNum", pageNum);
 		paramMap.put("Search", Search);
+		
 		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList", paramMap);
 		return userList;
 	}

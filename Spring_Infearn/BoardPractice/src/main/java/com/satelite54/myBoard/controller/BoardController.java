@@ -20,12 +20,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/")
 	private String goBoardWithUserList(Model model) {
-//		ClassPathXmlApplicationContext factory
-//		= new ClassPathXmlApplicationContext("../spring/root-context.xml");
-//		
-//		BoardPage boardPage = (BoardPage) factory.getBean("boardList");
-		Integer Int = 2;
-		List<BoardDTO> boardList = boardService.getBoardPageList(Int, "title");
+		List<BoardDTO> boardList = boardService.getBoardPageList(5, "title");
 		model.addAttribute("BoardList", boardList);
 		return "community";
 	}

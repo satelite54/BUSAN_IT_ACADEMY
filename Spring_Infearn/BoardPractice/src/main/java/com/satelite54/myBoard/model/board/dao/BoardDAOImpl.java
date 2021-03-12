@@ -32,9 +32,10 @@ public class BoardDAOImpl implements IBoardDAO {
 		return userList;
 	}
 	@Override
-	public List<BoardDTO> getBoardPageList(int pageNum, String Search) {
+	public List<BoardDTO> getBoardPageList(int boardStartNum, int boardEndNum, String Search) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("pageNum", pageNum);
+		paramMap.put("boardStartNum", boardStartNum);
+		paramMap.put("boardEndNum", boardEndNum);
 		paramMap.put("Search", Search);
 		
 		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList", paramMap);

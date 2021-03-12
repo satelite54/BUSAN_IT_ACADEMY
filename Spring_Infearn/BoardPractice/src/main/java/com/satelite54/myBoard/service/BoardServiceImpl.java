@@ -17,12 +17,9 @@ public class BoardServiceImpl implements IBoardService {
 	IBoardDAO boardDAO;
 	
 	public List<BoardDTO> getBoardPageList(int pageNum, String title) {
-//		ClassPathXmlApplicationContext factory
-//		= new ClassPathXmlApplicationContext("../spring/root-context.xml");
-//		
-//		BoardDAO boardDao = (BoardDAO) factory.getBean("boardDAO");
-		List<BoardDTO> SearchBoardList = boardDAO.getBoardPageList(pageNum, title);
-		
+		int boardStartNum = 1;
+		int boardEndNum = 20;
+		List<BoardDTO> SearchBoardList = boardDAO.getBoardPageList(boardStartNum,boardEndNum, title);
 		return SearchBoardList;
 	}
 }

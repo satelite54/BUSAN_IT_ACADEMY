@@ -24,9 +24,9 @@
 		FROM (
 			SELECT *
 		 	FROM board
-			WHERE bTitle LIKE '%#{Search,jdbcType=VARCHAR}%'
+			WHERE bTitle LIKE '%${Search,jdbcType=VARCHAR}%'
 			ORDER BY BNum DESC
-		) WHERE ROWNUM <![CDATA[<]]>= #{pageNum,jdbcType=NUMERIC}
+		) WHERE ROWNUM <![CDATA[>]]>= #{boardStartNum,jdbcType=INTEGER} AND ROWNUM <![CDATA[<]]>= #{boardEndNum,jdbcType=INTEGER}
 
 	</select>
 </mapper>

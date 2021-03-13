@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.satelite54.myBoard.model.board.dto.BoardDTO;
@@ -19,19 +20,32 @@ public class BoardController {
 	@Inject
 	BoardServiceImpl boardService;
 
-	@RequestMapping(value = "/")
-	private String goBoardWithUserList(Model model,
-			@RequestParam("curPage") String curPage,
-			@RequestParam("pageSize") String pageSize,
-			@RequestParam("search") String search) {
-		List<BoardDTO> boardList = boardService.getBoardPageList(10, 20, search);
-
+	@RequestMapping(value = {"/boardList"}, method = RequestMethod.GET)
+	private String goBoardWithUserList(Model model
+			,
+			@RequestParam("page") String curPage,
+			@RequestParam("search") String search
+			) {
+		int pageNum = Integer.parseInt(curPage);
+		int startBlockNum = 1;
+		int endBlockNum = 1;
+		int pageSize = 10;
+		if(pageNum == 1) {
+			endBlockNum = pageNum * pageSize;
+		} else {
+			startBlockNum = pageNum * pageSize;
+			endBlockNum = pageSize * (pageNum + 1) - 1;
+		}
 		BoardPage page = new BoardPage();
 		int PageNum = Integer.parseInt(curPage);
 		page.setPageNo(PageNum);
-		page.setPageSize(5);//pageSize
+		page.setPageSize(pageSize);//pageSize
 		page.setTotalCount(boardService.getTotalBoardCnt());
+		
+		
 		model.addAttribute("Page", page);
+		List<BoardDTO> boardList = boardService
+				.getBoardPageList(startBlockNum, endBlockNum, search);
 		model.addAttribute("BoardList", boardList);
 		return "community";
 	}

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Service
 @Getter
 @Setter
-public class BoardPage {//                  사용법  setPageNo(4), setPageSize(), setTotalCount(totalCount)
+public class BoardPage {//                  사용법  setPageNo(4), setPageSize(6), setTotalCount(totalCount)
     private int pageSize; // 게시 글 수
     private int firstPageNo; // 첫 번째 페이지 번호
     private int prevPageNo; // 이전 페이지 번호

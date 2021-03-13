@@ -46,17 +46,17 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination" style="justify-content: center;">
 				<li class="page-item">
-					<a class="page-link" href="communityListAction.do?page=${param.page - 1}" aria-label="Previous">
+					<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${Page.prevPageNo}&search=" aria-label="Previous">
 						<span aria-hidden="true"> &laquo;</span>
 					</a>
 				</li>
-				<c:forEach var="Page" begin="1" end="${requestScope.page.lastPageNum}" varStatus="vs">
+				<c:forEach var="Page" begin="${Page.startPageNo}" end="${Page.endPageNo}" varStatus="vs">
 					<li class="page-item">
-						<a class="page-link" href="communityListAction.do?page=${vs.count}">${vs.count}</a>
+						<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${vs.count}&search=">${vs.count}</a>
 					</li>
 				</c:forEach>
 				<li class="page-item">
-					<a class="page-link" href="communityListAction.do?page=${param.page + 1}"aria-label="Next">
+					<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${Page.nextPageNo}&search="aria-label="Next">
 						<span aria-hidden="true"> &raquo; </span>
 					</a>
 				</li>

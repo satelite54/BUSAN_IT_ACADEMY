@@ -16,10 +16,12 @@ public class BoardServiceImpl implements IBoardService {
 	@Inject
 	IBoardDAO boardDAO;
 	
-	public List<BoardDTO> getBoardPageList(int pageNum, String title) {
-		int boardStartNum = 1;
-		int boardEndNum = 20;
-		List<BoardDTO> SearchBoardList = boardDAO.getBoardPageList(boardStartNum,boardEndNum, title);
+	public List<BoardDTO> getBoardPageList(int boardStartNum,int boardEndNum ,String title) {
+		List<BoardDTO> SearchBoardList = boardDAO.getDivideList(boardStartNum,boardEndNum, title);
 		return SearchBoardList;
+	}
+	@Override
+	public int getTotalBoardCnt() {
+		return boardDAO.getTotalListCnt();
 	}
 }

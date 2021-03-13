@@ -19,4 +19,9 @@ public class DAOTester {
     public void testTime() throws Exception{
         System.out.println(dao.test());
     }
+    
+    @Test
+    public void testGetCnt() throws Exception{
+    	System.out.println(dao.getTotalListCnt());
+    }
 }

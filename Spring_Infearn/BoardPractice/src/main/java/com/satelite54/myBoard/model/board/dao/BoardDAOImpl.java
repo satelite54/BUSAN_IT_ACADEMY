@@ -27,12 +27,12 @@ public class BoardDAOImpl implements IBoardDAO {
 		return sqlSession.selectOne(NAMESPACE + "getTime");
 	}
 	@Override
-	public  List<BoardDTO> getBoardList() {
+	public  List<BoardDTO> getTotalList() {
 		List<BoardDTO> userList = sqlSession.selectList("getAllBoardList");
 		return userList;
 	}
 	@Override
-	public List<BoardDTO> getBoardPageList(int boardStartNum, int boardEndNum, String Search) {
+	public List<BoardDTO> getDivideList(int boardStartNum, int boardEndNum, String Search) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("boardStartNum", boardStartNum);
 		paramMap.put("boardEndNum", boardEndNum);
@@ -40,5 +40,9 @@ public class BoardDAOImpl implements IBoardDAO {
 		
 		List<BoardDTO> userList = sqlSession.selectList("getBoardPageList", paramMap);
 		return userList;
+	}
+	@Override
+	public int getTotalListCnt() {
+		return sqlSession.selectOne("getBoardTotalCnt");
 	}
 }

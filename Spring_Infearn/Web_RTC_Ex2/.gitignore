@@ -1,0 +1,23 @@
+*.class
+<<<<<<< HEAD
+.classpath
+.project
+.settings/
+/.settings/
+=======
+>>>>>>> 01cf64919e55c333691de087338ce04214fabeef
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+<<<<<<< HEAD
+/target/
+=======
+>>>>>>> 01cf64919e55c333691de087338ce04214fabeef

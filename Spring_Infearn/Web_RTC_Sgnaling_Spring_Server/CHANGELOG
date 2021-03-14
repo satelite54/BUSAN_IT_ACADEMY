@@ -1,0 +1,67 @@
+v1.0.0-RC6:
+    - NextRTCConversation will expose information about creator and members
+    - Close reason will not be returned in event
+    - Content in event will not be Optional anymore (you'll get content or empty string)
+    - Server will be closeable (all thread pools will be closed, and connection released)
+v1.0.0-RC5:
+    - Updated pom and readme
+=x=>- Removed dependency to WebSocket JSR-356
+    - New conversation type MESH_WITH_MASTER (when master leaves then conversation will be destroyed)
+v1.0.0-RC4:
+    - Removed unnecessary log4j.properties file
+    - Log4j replaced with Slf4j
+v1.0.0-RC3:
+    - Introduced performance tests
+    - Improved message sender (errors will be send only once whereas normal messages will be retried 3 times)
+    - In broadcast conversation participant will received newJoined signal with master data
+    - Ping will not start immediately after member is joined
+    - When connection is closed message will not be send through it
+    - Each send will try at least 3 times before failing
+===>- Introduced message sender instead of method send in InternalMessage
+    - Introduced parallel model inside conversation
+    - Changed log level
+    - Synchronization on join signal
+    - Fixed version of dependencies
+    - Performance tests
+    - Used Synchronous communication instead of Asynchronous
+    - Hanging connections #27
+v1.0.0-RC2:
+    - Changed structure of Exceptions
+    - Added property nextrtc.join_only_to_existing to decide whether join conversation should thrown an exception when conversation exists or create a new one.
+    - Changed pom version policy
+v1.0.0-RC1:
+    - Extracted EndpointConfiguration
+    - Updated README.md
+    - NextRTC can be run as Spring app or as Standalone server
+    - Daggered project
+    - Refactored way of creation beans - Added factories, extracted interfaces and prepared 2 configuration. First for manual - standalone mode, second for Spring mode
+    - Lomboked again project
+    - Removed joda-time from dependency (Zoned Date time is used instead)
+v0.0.7:
+    - Fixed problem with flushing server responses
+v0.0.6:
+    - PingTask will not send a messages when connection is closed (now it could sometimes)
+    - EventDispatcher will catch all Exception, and allow to process rest of handlers (now handlers were executed to the first exception in chain)
+    - Improved logging for unexpected situation, stacktrace will be in logs in DEBUG level
+    - One member will be able to create or join to only one conversation
+    - Candidates will be exchanged even for broadcast conversation
+    - Added new method to SignalResolver (addCustomHandler) which allows you to add your custom signal
+    - Added actor test for TEXT message
+v0.0.5:
+    - Added new signal END which is send when broadcaster will exit from broadcast conversation
+    - Prepared ActorTests where Actor play role of js client
+    - Added ERROR signal. Improved exception handling. When exception occurs it'll be convert to normal message and connection will not be broken
+    - Improved logging (Overridden toString)
+    - CREATE signal will return in custom type of created conversation
+    - JOIN signal works in the same way as CREATE signal when conversation doesn't not exists
+    - removed js file from this project (new project for js will be created)
+v0.0.4:
+    - New signal 'newJoined' added to separate two case when someone has joined to conversation and to inform rest of people from conversation about new joiner
+    - Added js leave method which close websocket connection and stop streaming
+    - Added default behavior to TEXT message, when message TEXT is sent without recipient, then message will be broadcasted to all conversation members
+    - Connection context has new feature, ICE candidates can be filter out when they didn't came from broadcaster (master in connection)
+    - Added broadcast conversation type
+    - Added policy to handle certain signals
+    - Expanded API of event new method content has been added (text messages can be stored in java app)
+    - Added new signal type TEXT (to transfer text messages between communication members)
+    - Delomboked project - too many questions were connected with building project

@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="10_lec14Pjt" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:10_lec14Pjt"/><Context docBase="11_lec17Pjt" path="/myServiceDao" reloadable="true" source="org.eclipse.jst.jee.server:11_lec17Pjt"/><Context docBase="BoardPractice" path="/myBoard" reloadable="true" source="org.eclipse.jst.jee.server:BoardPractice"/></Host>
+      <Context docBase="10_lec14Pjt" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:10_lec14Pjt"/><Context docBase="11_lec17Pjt" path="/myServiceDao" reloadable="true" source="org.eclipse.jst.jee.server:11_lec17Pjt"/><Context docBase="BoardPractice" path="/myBoard" reloadable="true" source="org.eclipse.jst.jee.server:BoardPractice"/><Context docBase="Web_RTC_Ex1" path="/videochat" reloadable="true" source="org.eclipse.jst.jee.server:Web_RTC_Ex1"/><Context docBase="Web_RTC_Ex2" path="/restvideochat" reloadable="true" source="org.eclipse.jst.jee.server:Web_RTC_Ex2"/></Host>
     </Engine>
   </Service>
 </Server>

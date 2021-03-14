@@ -29,7 +29,7 @@ public class BoardController {
 		int pageNum = Integer.parseInt(curPage);
 		int startBlockNum = 1;
 		int endBlockNum = 1;
-		int pageSize = 5;
+		int pageSize = 10;
 		if(pageNum == 1) {
 			endBlockNum = pageNum * pageSize;
 		} else {

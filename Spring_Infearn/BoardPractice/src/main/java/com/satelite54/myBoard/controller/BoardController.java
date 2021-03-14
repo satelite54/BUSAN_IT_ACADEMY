@@ -29,12 +29,12 @@ public class BoardController {
 		int pageNum = Integer.parseInt(curPage);
 		int startBlockNum = 1;
 		int endBlockNum = 1;
-		int pageSize = 10;
+		int pageSize = 5;
 		if(pageNum == 1) {
 			endBlockNum = pageNum * pageSize;
 		} else {
-			startBlockNum = pageNum * pageSize;
-			endBlockNum = pageSize * (pageNum + 1) - 1;
+			startBlockNum = pageNum * pageSize - pageSize;
+			endBlockNum = pageSize * (pageNum + 1) - 1 - pageSize;
 		}
 		BoardPage page = new BoardPage();
 		int PageNum = Integer.parseInt(curPage);

@@ -45,30 +45,45 @@
 		</table>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination" style="justify-content: center;">
-				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${Page.prevPageNo}&search=" aria-label="Previous">
-						<span aria-hidden="true"> &laquo;</span>
-					</a>
-				</li>
-				<c:forEach var="Page" begin="${Page.startPageNo}" end="${Page.endPageNo}" varStatus="vs">
-					<li class="page-item">
-						<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${vs.count}&search=">${vs.count}</a>
-					</li>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/boardList?page=1&search="
+					aria-label="goFirstPage"> <span aria-hidden="true">1</span>
+				</a></li>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/boardList?page=${Page.prevPageNo}&search="
+					aria-label="Previous"> <span aria-hidden="true"> &laquo;</span>
+				</a></li>
+				<c:forEach var="pageNo" begin="${Page.startPageNo}" end="${Page.endPageNo}" varStatus="vs">
+					<c:choose>
+						<c:when test="${pageNo eq Page.pageNo}">
+							<li class="page-item"><a class="page-link text-danger"
+								href="${pageContext.request.contextPath}/boardList?page=${pageNo}&search=">${pageNo}</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="${pageContext.request.contextPath}/boardList?page=${pageNo}&search=">${pageNo}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
-				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/boardList?page=${Page.nextPageNo}&search="aria-label="Next">
-						<span aria-hidden="true"> &raquo; </span>
-					</a>
-				</li>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/boardList?page=${Page.nextPageNo}&search="
+					aria-label="Next"> <span aria-hidden="true"> &raquo; </span>
+				</a></li>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/boardList?page=${Page.finalPageNo}&search="
+					aria-label="goEndPage"> <span aria-hidden="true">${Page.finalPageNo}</span>
+				</a></li>
 			</ul>
 		</nav>
 		<a href="#" onclick="checkForm1(); return false;"
 			class="btn btn-success float-right">글쓰기</a>
 	</div>
-	<script
-		type="text/javascript">function checkForm1() {if (${id==null}) {alert("로그인 해주세요.");return false;}location.href = "communityWrite.do?id=${id}"}</script>
+	<script type="text/javascript">function checkForm1() {if (${id==null}) {alert("로그인 해주세요.");return false;}location.href = "communityWrite.do?id=${id}"}</script>
 	<script src="resources/js/jquery-3.5.1.min.js"></script>
 	<script src="resources/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/css/bootstrap.min.css"></script>
+
 </body>
 </html>

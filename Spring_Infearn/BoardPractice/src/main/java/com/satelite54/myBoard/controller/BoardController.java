@@ -14,12 +14,14 @@ import com.satelite54.myBoard.model.board.dto.BoardDTO;
 import com.satelite54.myBoard.service.BoardPage;
 import com.satelite54.myBoard.service.BoardServiceImpl;
 
+import dev.onvoid.webrtc.media.MediaStream;
+
 @Controller
 public class BoardController {
 
 	@Inject
 	BoardServiceImpl boardService;
-
+	
 	@RequestMapping(value = {"/boardList"}, method = RequestMethod.GET)
 	private String goBoardWithUserList(Model model
 			,

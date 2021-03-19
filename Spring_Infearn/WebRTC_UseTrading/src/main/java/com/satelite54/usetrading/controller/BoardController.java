@@ -51,4 +51,9 @@ public class BoardController {
 		model.addAttribute("BoardList", boardList);
 		return "community";
 	}
+	
+	@RequestMapping(value = "/Main")
+	private String goMain() {
+		return "helloMarket";
+	}
 }

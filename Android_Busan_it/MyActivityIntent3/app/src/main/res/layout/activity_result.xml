@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/pic1text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="그림 1"
+                android:gravity="center_vertical" />
+            <TextView
+                android:id="@+id/pic2text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 2"/>
+            <TextView
+                android:id="@+id/pic3text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 3"/>
+            <TextView
+                android:id="@+id/pic4text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="그림 4"/>
+            <TextView
+                android:id="@+id/pic5text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 5"/>
+            <TextView
+                android:id="@+id/pic6text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 6"/>
+            <TextView
+                android:id="@+id/pic7text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 7"/>
+            <TextView
+                android:id="@+id/pic8text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 8"/>
+            <TextView
+                android:id="@+id/pic9text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="그림 9"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar1"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar2"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+
+            <RatingBar
+                android:id="@+id/rbar3"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="right"
+                android:layout_weight="1" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar4"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar5"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar6"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar7"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar8"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rbar9"
+                style="?android:ratingBarStyleIndicator"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="돌아가기"/>
+</LinearLayout>

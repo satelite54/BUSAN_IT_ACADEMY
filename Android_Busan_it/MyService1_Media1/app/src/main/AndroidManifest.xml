@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mysqllite">
+    package="com.example.myservice1_media1">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySQLLite">
+        android:theme="@style/Theme.MyService1_Media1">
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.MyService" />
+            </intent-filter>
+
+        </service>
 
         <activity android:name=".MainActivity">
             <intent-filter>

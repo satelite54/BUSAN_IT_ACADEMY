@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 var factory = LayoutInflater.from(this)
                 var view = factory.inflate(R.layout.error, null)
                 alertBox.setView(view)
-                alertBox.setTitle("키와 체중")
+                alertBox.setCustomTitle(factory.inflate(R.layout.customtitle, null))
                 alertBox.show()
                 return@setOnClickListener
             }

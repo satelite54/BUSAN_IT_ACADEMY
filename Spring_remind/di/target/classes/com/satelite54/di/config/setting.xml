@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<!-- <context:component-scan base-package="com.satelite54.di.entity, com.satelite54.di.ui"></context:component-scan> -->
+	<!-- <util:list id="exams" list-class="java.util.ArrayList"> <bean class="com.satelite54.di.entity.NewlecExam" 
+		p:kor="10" p:com="20" p:eng="30" p:math="40" /> <ref bean="exam" /> </util:list> -->
+
+<!-- 	<bean id="exam1" class="com.satelite54.di.entity.NewlecExam"
+		p:kor="10" p:com="20" p:eng="30" p:math="40" />
+	<bean id="exam2" class="com.satelite54.di.entity.NewlecExam"
+		p:kor="10" p:com="20" p:eng="30" p:math="40" />
+
+	<bean id="console" class="com.satelite54.di.ui.InlineExamConsole" /> -->
+	<!-- <constructor-arg name="exam" ref="exam" /> <property name="exam" ref="exam" 
+		/> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="exams" class="java.util.ArrayList"> <constructor-arg> <list> 
+		<bean class="com.satelite54.di.entity.NewlecExam" p:kor="10" p:com="20" p:eng="30" 
+		p:math="40" /> <ref bean="exam" /> </list> </constructor-arg> </bean> -->
+</beans>

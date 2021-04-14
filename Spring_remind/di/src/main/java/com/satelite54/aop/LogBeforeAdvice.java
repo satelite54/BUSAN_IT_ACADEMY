@@ -1,0 +1,13 @@
+package com.satelite54.aop;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class LogBeforeAdvice implements MethodBeforeAdvice{
+	
+	public void before(Method method, Object[] args, Object target) throws Throwable {
+		// TODO Auto-generated method stub
+		System.out.println("앞에서 실행될 로직");
+	}
+}

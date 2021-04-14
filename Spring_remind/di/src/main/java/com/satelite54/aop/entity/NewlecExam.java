@@ -13,6 +13,7 @@ public class NewlecExam implements Exam{
 	
 	public NewlecExam() {
 		
+		
 	}
 	
 	public NewlecExam(int kor, int eng, int math, int com) {
@@ -63,6 +64,10 @@ public class NewlecExam implements Exam{
 	public int total() {
 		
 		int result = kor+eng+math+com;
+		
+		if(kor > 100) {
+			throw new IllegalArgumentException("국어가 100점을 넘김");
+		}
 		
 		return result;
 	}

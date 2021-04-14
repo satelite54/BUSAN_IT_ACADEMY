@@ -5,13 +5,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="target" class="com.satelite54.aop.entity.NewlecExam"
-		p:kor="1" p:com="1" p:eng="1" p:math="1" />
+		p:kor="101" p:com="1" p:eng="1" p:math="1" />
 	<bean id="logAroundAdvice" class="com.satelite54.aop.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="com.satelite54.aop.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="com.satelite54.aop.LogAfterReturningAdvice" />
+	<bean id="logAfterThrowingAdvice" class="com.satelite54.aop.LogAfterThrowingAdvice" />
 	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="target"></property>
 		<property name="interceptorNames">
 			<list>
 				<value>logAroundAdvice</value>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logAfterThrowingAdvice</value>
 			</list>
 		</property>
 	</bean>

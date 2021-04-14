@@ -5,11 +5,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="target" class="com.satelite54.aop.entity.NewlecExam"
-		p:kor="101" p:com="1" p:eng="1" p:math="1" />
+		p:kor="1" p:com="1" p:eng="1" p:math="1" />
 	<bean id="logAroundAdvice" class="com.satelite54.aop.LogAroundAdvice" />
 	<bean id="logBeforeAdvice" class="com.satelite54.aop.LogBeforeAdvice" />
 	<bean id="logAfterReturningAdvice" class="com.satelite54.aop.LogAfterReturningAdvice" />
 	<bean id="logAfterThrowingAdvice" class="com.satelite54.aop.LogAfterThrowingAdvice" />
+	
+	<bean id="ClassicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="total"/>
+	</bean>
+	
+	<!-- total 매소드만 logBeforeAdvice를 주겠다.(포인트 컷) -->
+	<bean id="ClassicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice"/>
+		<property name="pointcut" ref="ClassicPointCut"/>
+	</bean>
+	
 	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="target"></property>
 		<property name="interceptorNames">
@@ -21,5 +32,4 @@
 			</list>
 		</property>
 	</bean>
-	
 </beans>

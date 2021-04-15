@@ -12,7 +12,8 @@ public class IndexController implements Controller {
 		System.out.println("IndexController~~~");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", "HelloSpring MVC~");
-		mv.setViewName("index.jsp");
+		mv.setViewName("index");
+		
 		return mv;
 	}
 }

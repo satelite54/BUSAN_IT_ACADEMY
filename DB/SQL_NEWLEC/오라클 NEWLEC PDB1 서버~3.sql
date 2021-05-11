@@ -91,3 +91,13 @@ SELECT * FROM notice WHERE writer_id = 'satelite54';
 SELECT * FROM notice WHERE hit = 0;
 -- 게시글 중에서 내용이 입력된 게시글만 조회하시오.
 SELECT * FROM notice WHERE content IS NOT NULL; -- NULL은 비교연산시 이렇게 조회할 수 있음
+--------------------------------------------------------------------------------
+-- 관계 연산자
+-- 조회수가 0, 1, 2인 게시글을 조회하시오.
+SELECT * FROM notice WHERE hit = 1 OR hit = 0 OR hit = 2;
+SELECT * FROM notice WHERE hit BETWEEN 0 AND 2;
+
+-- 조회수가 0, 2, 7인 게시글을 조회하시오.
+SELECT * FROM notice WHERE hit IN(0, 2, 7);
+-- 조회수가 0, 2, 7이 아닌 게시글을 조회하시오.
+SELECT * FROM notice WHERE hit NOT IN(0, 2, 7);

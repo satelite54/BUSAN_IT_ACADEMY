@@ -160,4 +160,92 @@ SELECT * FROM (SELECT ROWNUM num, notice.* FROM notice) WHERE num BETWEEN 6 AND 
 SELECT DISTINCT id FROM member;
 -- 한 컬럼에서 중복을 제거할때 사용한다.
 --------------------------------------------------------------------------------
--- 날짜 함수
+-- 오라클 함수 종류
+-- 문자열 함수, 숫자 함수, 날짜 함수, 변환 함수, NULL 관련 함수, 집계 함수
+-- SUBSTR(문자열, 시작위치, 길이)
+SELECT SUBSTR('ABCDEFG',3,4) "Substring"
+     FROM DUAL;
+SELECT SUBSTRB('안녕하세요',5) FROM DUAL;
+
+-- 모든 학생의 이름과 출생 월만을 조회하시오.
+SELECT member.name, SUBSTR(member.brithday, 6, 2) FROM member;
+-- 회원 중에서 전화번호가 010으로 시작하는 회원의 모든 정보를 출력하시오.
+SELECT * FROM member WHERE '010' = SUBSTR(phone, 1, 3);
+-- 함수가 WHERE 절에 들어가게 되면 만약 전체 테이블의 레코드가 1억개 정도 되면 함수호출이 1억번 일어나게된다.
+
+-- 회원 중에서 생년 월일이 7,8,9월인 회원의 모든 정보를 출력 -- 비효율적인 것 같다..
+SELECT * FROM member WHERE REGEXP_LIKE(SUBSTR(brithday, 7, 1) ,'[7-9]');
+SELECT * FROM member WHERE SUBSTR(brithday, 6, 2) IN('07', '08', '09');
+
+-- 전화번호를 등록하지 않은 회원 중에서 생년월일이 7, 8, 9월인 회원의 모든 정보를 출력하시오.
+SELECT * FROM member WHERE phone IS NULL AND SUBSTR(brithday, 6, 2) IN('07', '08', '09');
+
+-- 문자열 덧셈 함수
+-- CONCAT('문자','문자')
+-- 문자열 함수보다 문자열 더하기 연산자 사용하는 거를 추천!!!
+SELECT CONCAT('호', '동') FROM DUAL;
+SELECT '호' || '동' name FROM DUAL;
+
+-- 문자열 트림 함수
+-- LTRIM('  HELLO   ') 왼쪽 공백 제거
+-- RTRIM('  HELLO   ') 오른쪽 공백 제거
+-- TRIM('  HELLO  ') 양쪽다 제거
+
+SELECT TRIM('  HELLO  ') FROM DUAL;
+
+-- 문자열 소문자, 대문자 변경
+SELECT LOWER('NeWlEC') FROM DUAL;
+SELECT UPPER('neWlec') FROM DUAL;
+
+-- 회원의 아이디가 'satelite54'인 회원을 조회하시오. (대소문자 구문 안함)
+SELECT * FROM member WHERE UPPER('satelite54') = UPPER(id);
+
+-- 문자열 대치 함수 REPLACE(문자열, 찾는 문자열, 대치할 문자열) / TRANSLATE()
+-- WE라는 문자만 찾는다.
+SELECT REPLACE('WHERE WE ARE','WE','YO') "Changes"
+     FROM DUAL;
+-- W는 Y로 E는 O로 바꾼다.
+SELECT TRANSLATE('WHERE WE ARE','WE','YO') "Changes"
+     FROM DUAL;
+
+-- 회원의 이름과 생년월일을 조회하시오.(단 생년월일은 빈칸 없이 출력)
+SELECT REPLACE(name, ' ', '') brithday FROM member;  
+
+--------------------------------------------------------------------------------
+-- 문자열 함수 2
+-- 문자열 패딩 RPAD(문자열, 바이트 수, 문자)
+SELECT RPAD(name, 7, '0') FROM member;
+
+-- 첫 글자를 대문자로 교체하는 함수(영어) INITCAP('the dwdwda')
+SELECT INITCAP('the dwdwda') FROM DUAL;
+
+-- 문자열의 위치 반환 함수 INSTR('ALL WE NEED TO IS JUST TO..', 'TO')
+-- INSTR(문자열, 찾을문자) INSTR(문자열, 찾을문자, 찾을 인덱스) INSTR(문자열, 찾을문자, 첫번째 찾을 인덱스, 찾은 몇 번째 인덱스를 반환할껀지?)
+SELECT INSTR('ALL WE NEED TO IS JUST TO..', 'TO') ind FROM DUAL;
+--------------------------------------------------------------------------------
+-- 날짜 관련 함수
+-- SYSDATE 는 서버 기준 날짜, CURRENT_DATE는 사용자 세션기준 날짜 그차이
+SELECT SYSDATE, CURRENT_DATE, SYSTIMESTAMP, CURRENT_TIMESTAMP FROM DUAL;
+
+-- 사용자 접속 세션의 설정을 바꿀 수 있다.
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
+
+-- 날짜 추출함수
+-- EXTRACT(YEAR/MONTH.....)
+SELECT EXTRACT(YEAR FROM SYSDATE) || '년' 년도 FROM DUAL;
+
+-- 날짜 누적함수
+SELECT ADD_MONTHS(SYSDATE, 1) FROM DUAL;
+
+-- 날짜의 차이를 알아내는 함수
+SELECT MONTHS_BETWEEN(SYSDATE, TO_DATE('2013-12-25'))
+  FROM DUAL;
+
+-- 다음 요일의 날짜 알려주는 함수
+SELECT NEXT_DAY(SYSDATE, '토요일') FROM DUAL;
+
+-- 월의 마지막 일자를 알려주는 함수
+SELECT LAST_DAY(SYSDATE) FROM DUAL;
+
+-- 지정된 범위에서 날짜를 반올림하는/자르는 함수 ROUND/TRUNC(날짜, 포멧)
+SELECT ROUND(SYSDATE, 'CC'), TRUNC(SYSDATE, 'CC') FROM DUAL;
